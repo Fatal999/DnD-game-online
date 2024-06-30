@@ -11,7 +11,7 @@ import ForgotPasswordPopup from "./jsx/popups/forgot-password";
 import ChangingPassword from "./jsx/popups/changing-password";
 import PasswordChanged from "./jsx/popups/password-changed";
 import UserMenu from "./jsx/home/user-menu";
-import Users from "./jsx/home/user-list";
+// import Users from "./jsx/home/user-list";
 
 //Home
 
@@ -24,8 +24,8 @@ gamesElement.render(<Games />);
 const userMenuElement = createRoot(document.getElementById("user-menu"));
 userMenuElement.render(<UserMenu />);
 
-const usersElement = createRoot(document.getElementById("users-list"));
-usersElement.render(<Users />);
+// const usersElement = createRoot(document.getElementById("users-list"));
+// usersElement.render(<Users />);
 
 //Log-in
 

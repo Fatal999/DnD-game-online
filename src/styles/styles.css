@@ -278,7 +278,7 @@ body {
 }
 @media (min-width: 1440px) {
   .main__games-counter {
-    margin-top: 40px;
+    margin-top: 0;
     margin-bottom: 24px;
   }
 }
