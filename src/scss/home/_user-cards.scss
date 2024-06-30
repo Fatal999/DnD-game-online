@@ -1,0 +1,143 @@
+.main__users {
+  display: flex;
+  flex-direction: column;
+  width: 344px;
+  margin: 0 auto;
+
+  @media (min-width: 1440px) {
+    width: 1080px;
+    margin-left: 180px;
+  }
+}
+
+.main__users-counter {
+  display: flex;
+  margin-bottom: 16px;
+
+  @media (min-width: 1440px) {
+    margin-bottom: 24px;
+  }
+}
+
+.main__users-label {
+  font-size: 18px;
+  line-height: 28px;
+  margin-right: 8px;
+  color: #212b36;
+}
+
+.main__users-count {
+  width: 286px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 28px;
+  color: #212b36;
+}
+
+.main__users-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    grid-gap: 24px;
+  }
+}
+
+.main__users-item {
+  position: relative;
+  width: 344px;
+  min-height: 300px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  cursor: pointer;
+}
+
+.main__users-item:not(:last-child) {
+  margin-bottom: 16px;
+
+  @media (min-width: 1440px) {
+    margin: 0;
+  }
+}
+
+.main__users-background {
+  margin-top: 8px;
+  margin-left: 8px;
+  margin-bottom: 20px;
+}
+
+.main__users-avatar {
+  position: absolute;
+  top: 92px;
+  left: 28px;
+  border-radius: 16px;
+}
+
+.main__users-status {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 20px;
+  color: #007867;
+  width: 107px;
+  min-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 167, 111, 0.16);
+  border-radius: 6px;
+  margin-left: 20px;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.main__users-name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #212b36;
+  margin-left: 20px;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.main__users-game {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  color: #637381;
+  width: 206px;
+  min-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(145, 158, 171, 0.16);
+  border-radius: 6px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.main__users-games {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  width: 27px;
+  min-height: 24px;
+  border-radius: 6px;
+  background-color: #212b36;
+  color: white;
+  position: absolute;
+  bottom: 20px;
+  right: 81px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}

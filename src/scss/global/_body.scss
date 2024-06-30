@@ -1,0 +1,17 @@
+body {
+  width: 375px;
+  margin: 0 auto;
+  background-color: #f3f3f3;
+  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  @media (min-width: 1440px) {
+    width: 1440px;
+  }
+}

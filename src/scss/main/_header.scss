@@ -1,0 +1,141 @@
+.header {
+  width: 375px;
+  min-height: 64px;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 1440px) {
+    width: 1440px;
+  }
+}
+
+.header__navigation {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (min-width: 1440px) {
+    width: 1440px;
+  }
+}
+
+.header__eye {
+  width: 40px;
+  height: 40px;
+  margin: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-image: url(../../src/assets/subtract.svg);
+
+  @media (min-width: 1440px) {
+    margin: 24px 100px 24px 40px;
+  }
+}
+
+.header__location {
+  display: none;
+
+  @media (min-width: 1440px) {
+    display: flex;
+    align-items: center;
+    min-height: 88px;
+  }
+}
+
+.header__location-title {
+  font-size: 14px;
+  line-height: 22px;
+  color: #212b36;
+  margin: 0;
+  margin-right: 20px;
+}
+
+.header__input {
+  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.57;
+  color: black;
+  width: 247px;
+  height: 40px;
+  background-color: white;
+  padding-left: 45px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 8px;
+  margin-top: 12px;
+  background-image: url(../../src/assets/header-search.svg);
+  background-repeat: no-repeat;
+  background-position: 8px 10px;
+  text-overflow: ellipsis;
+
+  @media (min-width: 1440px) {
+    width: 942px;
+    background-position: 16px 10px;
+    margin-top: 24px;
+    margin-right: 16px;
+  }
+}
+
+.header__filter {
+  display: none;
+
+  @media (min-width: 1440px) {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    background-image: url(../../src/assets/header-filter.svg);
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+    background-size: 20px 20px;
+    padding: 0;
+    margin-top: 24px;
+    margin-right: 16px;
+    background-color: #f3f3f3;
+  }
+}
+
+.header__search {
+  display: none;
+
+  @media (min-width: 1440px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 74px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 24px;
+    margin-right: 90px;
+    background-color: #212b36;
+    color: white;
+    font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 24px;
+    border-radius: 8px;
+  }
+}
+
+.header__user {
+  width: 40px;
+  height: 40px;
+  margin: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-image: url(../../src/assets/un-log.svg);
+  background-repeat: no-repeat;
+  background-position: 8px 8px;
+  background-color: #212b36;
+
+  @media (min-width: 1440px) {
+    margin: 0;
+    margin-top: 24px;
+    margin-right: 40px;
+  }
+}
