@@ -12,6 +12,7 @@ import ChangingPassword from "./jsx/popups/changing-password";
 import PasswordChanged from "./jsx/popups/password-changed";
 // import UserMenu from "./jsx/home/user-menu";
 // import Users from "./jsx/home/user-list";
+import { cardData } from "./js/server";
 
 //Home
 
@@ -19,7 +20,7 @@ const headerElement = createRoot(document.getElementById("header"));
 headerElement.render(<Header />);
 
 const gamesElement = createRoot(document.getElementById("games-list"));
-gamesElement.render(<Games />);
+gamesElement.render(<Games cardData={cardData} />);
 
 // const userMenuElement = createRoot(document.getElementById("user-menu"));
 // userMenuElement.render(<UserMenu />);
