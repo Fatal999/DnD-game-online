@@ -10,7 +10,7 @@ import RegistrationPopup from "./jsx/popups/registration";
 import ForgotPasswordPopup from "./jsx/popups/forgot-password";
 import ChangingPassword from "./jsx/popups/changing-password";
 import PasswordChanged from "./jsx/popups/password-changed";
-import UserMenu from "./jsx/home/user-menu";
+// import UserMenu from "./jsx/home/user-menu";
 // import Users from "./jsx/home/user-list";
 
 //Home
@@ -21,8 +21,8 @@ headerElement.render(<Header />);
 const gamesElement = createRoot(document.getElementById("games-list"));
 gamesElement.render(<Games />);
 
-const userMenuElement = createRoot(document.getElementById("user-menu"));
-userMenuElement.render(<UserMenu />);
+// const userMenuElement = createRoot(document.getElementById("user-menu"));
+// userMenuElement.render(<UserMenu />);
 
 // const usersElement = createRoot(document.getElementById("users-list"));
 // usersElement.render(<Users />);
