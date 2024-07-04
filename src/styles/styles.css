@@ -687,6 +687,18 @@ body {
   margin: 0;
 }
 
+.main__filter {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  z-index: 1;
+  width: 280px;
+  min-height: 720px;
+}
+
 .main__log-in-overlay {
   display: none;
   position: fixed;
