@@ -1,4 +1,4 @@
-.main__registration-overlay {
+.main__log-in {
   display: none;
   position: fixed;
   top: 0;
@@ -8,7 +8,7 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.main__registration {
+.main__log-in-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -25,117 +25,54 @@
   box-sizing: border-box;
 }
 
-.main__registration-title {
+.main__log-in-title {
+  font-weight: 700;
   font-size: 24px;
-  font-weight: 700;
   line-height: 36px;
-  color: #212b36;
-  margin-top: 84px;
+  margin-top: 128px;
   margin-bottom: 16px;
+  color: #212b36;
 }
 
-.main__registration-wrapp {
+.main__log-in-container {
   display: flex;
-}
-
-.main__registration-sign-in {
-  font-size: 14px;
-  line-height: 22px;
-  color: #212b36;
-  margin: 0;
-}
-
-.main__registration-account {
-  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
-  font-size: 14px;
-  line-height: 22px;
-  font-weight: 700;
-  border: none;
-  padding: 0;
-  background-color: white;
-  cursor: pointer;
-  margin-left: 4px;
-}
-
-.main__registration-choose {
-  font-size: 12px;
-  line-height: 18px;
-  color: #637381;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.main__registration-google {
-  width: 36px;
-  height: 36px;
-  border: none;
-  background-color: white;
-  cursor: pointer;
-  background-image: url(../../src/assets/google.svg);
-  background-repeat: no-repeat;
-  padding: 0;
-  background-position: 8px 8px;
-  margin: 0 auto;
-}
-
-.main__registration-username {
-  width: 352px;
-  min-height: 56px;
-  border-radius: 8px;
-  border: 1px solid rgba(145, 158, 171, 0.32);
-  padding: 16px 14px 16px 14px;
-  box-sizing: border-box;
-  color: #212b36;
-  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 20px;
-}
-
-.main__registration-email {
-  width: 352px;
-  min-height: 56px;
-  border-radius: 8px;
-  border: 1px solid rgba(145, 158, 171, 0.32);
-  padding: 16px 14px 16px 14px;
-  box-sizing: border-box;
-  color: #212b36;
-  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 20px;
-}
-
-.main__registration-password {
-  width: 352px;
-  min-height: 56px;
-  border-radius: 8px;
-  border: 1px solid rgba(145, 158, 171, 0.32);
-  padding: 16px 14px 16px 14px;
-  box-sizing: border-box;
-  color: #212b36;
-  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
-  font-size: 16px;
-  line-height: 24px;
   margin-bottom: 20px;
   position: relative;
 }
 
-.main__registration-password-show {
-  position: absolute;
-  top: 474px;
-  right: 66px;
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border: none;
-  cursor: pointer;
-  background-image: url(../../src/assets/show-password.svg);
-  background-repeat: no-repeat;
-  background-position: 8px 8px;
+.main__log-in-member {
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0;
+  margin-right: 4px;
+  color: #212b36;
 }
 
-.main__registration-password-repeat {
+.main__log-in-button {
+  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  color: #212b36;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.main__log-in-email-label {
+  background-color: white;
+  font-size: 12px;
+  line-height: 12px;
+  color: #919eab;
+  position: absolute;
+  bottom: -27px;
+  left: 16px;
+  z-index: 1;
+}
+
+.main__log-in-email {
   width: 352px;
   min-height: 56px;
   border-radius: 8px;
@@ -146,13 +83,26 @@
   font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
   font-size: 16px;
   line-height: 24px;
-  margin-bottom: 20px;
 }
 
-.main__registration-password-repeat-show {
+.main__log-in-passwod {
+  width: 352px;
+  min-height: 56px;
+  border-radius: 8px;
+  border: 1px solid rgba(145, 158, 171, 0.32);
+  padding: 16px 14px 16px 14px;
+  box-sizing: border-box;
+  color: #212b36;
+  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 20px;
+}
+
+.main__log-in-passwod-show {
   position: absolute;
-  bottom: 160px;
-  right: 66px;
+  bottom: -148px;
+  right: 2px;
   width: 40px;
   height: 40px;
   background-color: white;
@@ -163,7 +113,42 @@
   background-position: 8px 8px;
 }
 
-.main__registration-sign-up {
+.main__log-in-forgot-passwod {
+  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
+  color: #212b36;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  background-color: white;
+  border: none;
+  width: 130px;
+  min-height: 22px;
+  margin-left: 223px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.main__log-in-check {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.main__log-in-checkbox {
+  width: 15px;
+  height: 15px;
+  margin: 8px;
+}
+
+.main__log-in-label {
+  color: #212b36;
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0;
+}
+
+.main__log-in-sign {
   width: 352px;
   min-height: 48px;
   display: flex;
@@ -179,5 +164,50 @@
   cursor: pointer;
   border-radius: 8px;
   padding: 0;
-  margin-bottom: 84px;
+  margin-bottom: 20px;
+}
+
+.main__log-in-choice {
+  color: #919eab;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.main__log-in-choice::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 156px;
+  height: 1px;
+  border-bottom: 1px dashed rgba(145, 158, 171, 0.2);
+}
+
+.main__log-in-choice::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 0;
+  width: 156px;
+  height: 1px;
+  border-bottom: 1px dashed rgba(145, 158, 171, 0.2);
+}
+
+.main__log-in-google {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  background-image: url(../../src/assets/google.svg);
+  background-repeat: no-repeat;
+  padding: 0;
+  background-position: 8px 8px;
+  margin: 0 auto;
 }

@@ -1,10 +1,10 @@
 function GameCard({pictures, price, startDate, game, gameSystem, accessibility, seatsLeft, masterAvatar, master}) {
  return (
-  <li className="main__games-item">
+  <li className="main__games-item"> 
   <div className="main__games-images">
-    <img className="main__games-main" src={pictures[0]} width="244" height="164" alt="Main."></img>
-    <img className="main__games-add" src={pictures[1]} width="80" height="80" alt="Add."></img>
-    <img className="main__games-add-1" src={pictures[2]} width="80" height="80" alt="Add."></img>
+    <img className="main__games-images-first" src={pictures[0]} width="244" height="164" alt="Main."></img>
+    <img className="main__games-images-second" src={pictures[1]} width="80" height="80" alt="Add."></img>
+    <img className="main__games-images-third" src={pictures[2]} width="80" height="80" alt="Add."></img>
     <p className="main__games-price">{price}</p>
   </div>
   <div className="main__date">

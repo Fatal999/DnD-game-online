@@ -1,12 +1,12 @@
-import Header from "../layout/header"
-import Footer from "../layout/footer"
-import HomePage from "../pages/home"
+import Header from "../header/header" 
+import Footer from "../footer/footer"
+import HomePage from "../../pages/home"
 
 function PageWrapper({ ...prop }) {
  return (
   <>
    <Header />
-    <main>
+    <main className="main">
      <HomePage { ...prop }/>
     </main>
    <Footer />

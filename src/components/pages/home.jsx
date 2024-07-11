@@ -1,9 +1,9 @@
-import Games from "../blocks/games-list"
+import GamesList from "../blocks/games-list/games-list"
 
 function HomePage({cards}) {
   return (
     <>
-     <Games cards={cards}/>
+     <GamesList cards={cards}/>
     </>
   )
 }

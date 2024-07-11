@@ -2,16 +2,8 @@
   width: 375px;
   min-height: 64px;
   display: flex;
-  justify-content: center;
-
-  @media (min-width: 1440px) {
-    width: 1440px;
-  }
-}
-
-.header__navigation {
-  display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   @media (min-width: 1440px) {
     width: 1440px;

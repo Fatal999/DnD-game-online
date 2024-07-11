@@ -1,15 +1,15 @@
-import GameCard from "../ui/game-card"
+import GameCard from "../../ui/game-card/game-card"
 
-function Games({cards}) {
+function GamesList({cards}) { 
  if (cards.length === 0) {
   return null;
  } else {
   return (
     <div className="main__games">
-    <div className="main__games-counter">
+     <div className="main__games-wrapper">
       <label className="main__games-title">Games</label>
       <p className="main__games-count">{cards.length}</p>
-    </div>
+     </div>
     <ul className="main__games-list">
     {cards.map((card) => (
         <li key={card.id}>
@@ -23,4 +23,4 @@ function Games({cards}) {
  }
 }
 
-export default Games;
+export default GamesList;

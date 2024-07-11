@@ -1,10 +1,10 @@
 import UserImg from "../../assets/user-img.png";
 import UserAvatar from "../../assets/un-log.svg";
 
-function Users() {
+function UsersList() { 
  return (
    <div className="main__users">
-     <div className="main__users-counter">
+     <div className="main__users-wrapper">
        <label className="main__users-label">Users</label>
        <p className="main__users-count">6</p>
      </div>
@@ -62,4 +62,4 @@ function Users() {
  )
 }
 
-export default Users;
+export default UsersList;

@@ -1,4 +1,4 @@
-import PageWrapper from "../layout/page-wrapper.jsx";
+import PageWrapper from "../layout/page-wrapper/page-wrapper.jsx";
 import cardData from "../../server/server.js";
 import "../../styles/styles.css";
 

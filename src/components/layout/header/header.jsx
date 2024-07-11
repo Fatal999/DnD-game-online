@@ -1,6 +1,6 @@
 function Header() {
  return (
-   <nav className="header__navigation">
+   <nav className="header">
      <button className="header__eye" type="button"></button>
      <input className="header__input" type="text" placeholder="Search for parties, masters & players" action="#" method="submit"></input>
      <button className="header__filter" type="button"></button>
@@ -10,4 +10,4 @@ function Header() {
  )
 }
 
-export default Header;
+export default Header; 

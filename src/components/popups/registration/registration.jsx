@@ -1,9 +1,9 @@
 function RegistrationPopup() {
  return (
-   <div className="main__registration-overlay">
-     <div className="main__registration">
+   <div className="main__registration"> 
+     <div className="main__registration-wrapper">
        <h1 className="main__registration-title">Get started absolutely free.</h1>
-       <div className="main__registration-wrapp">
+       <div className="main__registration-container">
          <p className="main__registration-sign-in">Already have an account?</p>
          <button className="main__registration-account" type="button">Sign in</button>
        </div>

@@ -15,7 +15,7 @@
   }
 }
 
-.main__user-menu-button {
+.main__user-menu-toggler {
   padding: 0;
   display: flex;
   justify-content: center;
@@ -31,10 +31,10 @@
   cursor: pointer;
 }
 
-.main__user-menu-button--disabled {
+.main__user-menu-toggler--disabled {
   color: #637381;
 }
 
-.main__user-menu-button--active {
+.main__user-menu-toggler--active {
   border-bottom: 2px solid black;
 }
