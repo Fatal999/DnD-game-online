@@ -1,6 +1,6 @@
 function GameCard({pictures, price, startDate, game, gameSystem, accessibility, seatsLeft, masterAvatar, master}) {
  return (
-  <li className="main__games-item"> 
+  <>
   <div className="main__games-images">
     <img className="main__games-images-first" src={pictures[0]} width="244" height="164" alt="Main."></img>
     <img className="main__games-images-second" src={pictures[1]} width="80" height="80" alt="Add."></img>
@@ -25,7 +25,7 @@ function GameCard({pictures, price, startDate, game, gameSystem, accessibility, 
     <label className="main__master-label">Master:</label>
     <p className="main__master-name" style={{ backgroundImage: `url(${masterAvatar})` }}>{master}</p>
   </div>
-  </li>
+  </>
  )
 }
 

@@ -1,7 +1,7 @@
-function RegistrationPopup() {
+function RegistrationPopup() {  
  return (
    <div className="main__registration"> 
-     <div className="main__registration-wrapper">
+     <div className="main__registration-wrapper" onClick={e => {e.stopPropagation()}}>
        <h1 className="main__registration-title">Get started absolutely free.</h1>
        <div className="main__registration-container">
          <p className="main__registration-sign-in">Already have an account?</p>

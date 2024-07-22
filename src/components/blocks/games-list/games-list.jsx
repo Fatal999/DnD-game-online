@@ -12,7 +12,7 @@ function GamesList({cards}) {
      </div>
     <ul className="main__games-list">
     {cards.map((card) => (
-        <li key={card.id}>
+        <li className="main__games-item" key={card.id}>
           <GameCard {...card} />
         </li>
     ))}

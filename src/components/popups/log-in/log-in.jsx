@@ -1,9 +1,11 @@
-function LogInPopup() {
+function LogInPopup({active, setActive}) { 
+//  const { logInActive, activateLogIn, deactivateLogIn } = useLogInActive();
+
  return (
-   <div className="main__log-in">
-     <div className="main__log-in-wrapper">
+   <div className={active ? "main__log-in active" : "main__log-in"} onClick={() => {setActive(false)}}>
+     <div className="main__log-in-wrapper" onClick={e => {e.stopPropagation()}}>
        <h1 className="main__log-in-title">Sign in</h1>
-       <div className="main__log-in-container">
+       <div className="main__log-in-container"> 
          <p className="main__log-in-member">Not a member yet?</p>
          <button className="main__log-in-button" type="button">Register now</button>
          <label className="main__log-in-email-label">Email adress</label>
