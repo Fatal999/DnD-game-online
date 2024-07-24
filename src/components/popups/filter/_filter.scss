@@ -1,17 +1,22 @@
 .main__filter {
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+.overlay__filter {
+  position: absolute;
+  inset: 0;
+}
+
+.main__filter-wrapper {
   position: absolute;
   top: 0;
-  right: 43.5px;
+  right: 220px;
   background-color: white;
   z-index: 1;
   width: 280px;
   min-height: 720px;
-
-  @media (min-width: 1440px) {
-    right: 0;
-  }
 }
 
 .main__filter-title {
@@ -126,8 +131,7 @@
   background-repeat: no-repeat;
 }
 
-.main__filter-accessibility-checkbox:checked
-  + .main__filter-accessibility-check {
+.main__filter-accessibility-checkbox:checked + .main__filter-accessibility-check {
   background-image: url(../../src/assets/checkbox-active.svg);
 }
 

@@ -1,6 +1,6 @@
  import { useState } from "react";
 
-function Filter() {
+function Filter({onOverlayClick, onRefreshFilterClick, onCloseFilterClick}) {
   const [selectedOption, setSelectedOption] = useState('both');
 
   const handleOptionChange = (event) => {
@@ -9,10 +9,12 @@ function Filter() {
 
  return(
   <div className="main__filter">
+   <div className="overlay__filter" onClick={onOverlayClick}></div>
+   <div className="main__filter-wrapper">
    <h1 className="main__filter-title">Filter</h1>
    <div className="main__filter-buttons">
-    <button className="main__filter-button main__filter-button--refresh" type="button"></button>
-    <button className="main__filter-button main__filter-button--close" type="button"></button> 
+    <button className="main__filter-button main__filter-button--refresh" type="button" onClick={onRefreshFilterClick}></button>
+    <button className="main__filter-button main__filter-button--close" type="button" onClick={onCloseFilterClick}></button> 
    </div>
    <form action="https://echo.htmlacademy.ru/" method="get">
     <div className="main__filter-options">
@@ -63,7 +65,7 @@ function Filter() {
       <p className="main__filter-system-call">Dungeons & Dragons (5th Edition)</p>
       <button className="main__filter-system-close" type="button"></button>
      </div>
-     <div className="main__filter-system-container">
+     <div className="main__filter-system-container"> 
       <p className="main__filter-system-call">Dread</p>
       <button className="main__filter-system-close" type="button"></button>
      </div>
@@ -78,6 +80,7 @@ function Filter() {
     </div>
     <button className="main__filter-submit" type="submit">Accept</button>
    </form>
+   </div>
   </div>
  )
 }

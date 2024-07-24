@@ -1,6 +1,7 @@
-function ForgotPassword() {
+function ForgotPassword({onOverlayClick}) {
  return (
    <div className="main__forgot-password">
+    <div className="overlay" onClick={onOverlayClick}></div>
      <div className="main__forgot-password-wrapper">
        <h1 className="main__forgot-password-title">Enter your email</h1>
        <input className="main__forgot-password-email" type="email" placeholder="Email"></input>

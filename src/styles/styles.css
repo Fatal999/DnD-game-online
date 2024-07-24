@@ -675,20 +675,24 @@ body {
 }
 
 .main__filter {
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+.overlay__filter {
+  position: absolute;
+  inset: 0;
+}
+
+.main__filter-wrapper {
   position: absolute;
   top: 0;
-  right: 43.5px;
+  right: 220px;
   background-color: white;
   z-index: 1;
   width: 280px;
   min-height: 720px;
-}
-@media (min-width: 1440px) {
-  .main__filter {
-    right: 0;
-  }
 }
 
 .main__filter-title {
@@ -956,17 +960,14 @@ body {
 
 .main__log-in {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-  transform: scale(0);
+  inset: 0;
+  z-index: 10;
 }
 
-.main__log-in.active {
-  transform: scale(1);
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .main__log-in-wrapper {
@@ -1090,23 +1091,39 @@ body {
   margin-bottom: 20px;
 }
 
-.main__log-in-check {
-  display: flex;
-  margin-bottom: 20px;
-  align-items: center;
-}
-
-.main__log-in-checkbox {
-  width: 15px;
-  height: 15px;
-  margin: 8px;
-}
-
 .main__log-in-label {
   color: #212b36;
   font-size: 14px;
   line-height: 22px;
   margin: 0;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.main__log-in-check {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.main__log-in-checkbox {
+  position: absolute;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.main__log-in-label-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../src/assets/checkbox-off.svg);
+  background-repeat: no-repeat;
+}
+
+.main__log-in-checkbox:checked + .main__log-in-label-box {
+  background-image: url(../../src/assets/checkbox-active.svg);
 }
 
 .main__log-in-sign {
@@ -1170,15 +1187,18 @@ body {
   background-repeat: no-repeat;
   padding: 0;
   background-position: 8px 8px;
-  margin: 0 auto;
+  margin-left: 158px;
 }
 
 .main__registration {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  z-index: 10;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -1357,12 +1377,14 @@ body {
 }
 
 .main__forgot-password {
-  display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  z-index: 10;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
