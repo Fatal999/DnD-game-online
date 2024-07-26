@@ -11,13 +11,13 @@ function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick
               Register now
             </button>
             <label className="main__log-in-email-label">Email adress</label>
-            <button className="main__log-in-passwod-show" type="button"></button> 
+            <button className="main__log-in-passwod-show" type="button"></button>
           </div>
           <input className="main__log-in-email" type="email" name="email" placeholder="Email"></input>
           <input className="main__log-in-passwod" type="password" name="password" placeholder="Password"></input>
           <button className="main__log-in-forgot-passwod" type="button" onClick={onForgotPasswordClick}>
             Forgot password?
-          </button> 
+          </button>
           <div className="main__log-in-check">
             <label className="main__log-in-label" htmlFor="log-in">
               <input className="main__log-in-checkbox" type="checkbox" id="log-in" name="log-in"></input>

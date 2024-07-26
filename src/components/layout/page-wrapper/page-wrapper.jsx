@@ -13,55 +13,63 @@ function PageWrapper({ ...prop }) {
   const [forgotPasswordActive, setForgotPasswordActive] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
 
-  const showLogInHandler = () => {
+  function showLogInHandler() {
     setLogInActive(true)
     setRegistrationActive(false)
   }
 
-  const closeLogInHandler = () => {
+  function closeLogInHandler() {
     setLogInActive(false)
   }
 
-  const showRegistrationHandler = () => {
+  function showRegistrationHandler() {
     setRegistrationActive(true)
     setLogInActive(false)
   }
 
-  const closeRegistrationHandler = () => {
+  function closeRegistrationHandler() {
     setRegistrationActive(false)
   }
 
-  const showForgotPasswordHandler = () => {
-   setForgotPasswordActive(true)
-   setLogInActive(false)
- }
+  function showForgotPasswordHandler() {
+    setForgotPasswordActive(true)
+    setLogInActive(false)
+  }
 
-  const closeForgotPasswordHandler = () => {
+  function closeForgotPasswordHandler() {
     setForgotPasswordActive(false)
   }
 
-  const showFilterHandler = () => {
+  function showFilterHandler() {
     setFilterActive(true)
   }
 
-  const closeFilterHandler = () => {
+  function closeFilterHandler() {
     setFilterActive(false)
   }
 
-  const refreshFilterHandler = () => {
+  function refreshFilterHandler() {
     setFilterActive(false)
     setFilterActive(true)
   }
 
   return (
     <>
-      <Header onLoginBtnClick={showLogInHandler} onFilterClick={showFilterHandler}/>
+      <Header onLoginClick={showLogInHandler} onFilterClick={showFilterHandler} />
       <main className="main">
         <HomePage {...prop} />
-        {logInActive && <LogInPopup onOverlayClick={closeLogInHandler} onRegistrationClick={showRegistrationHandler} onForgotPasswordClick={showForgotPasswordHandler}/>}
-        {registrationActive && <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandler}/>}
-        {forgotPasswordActive && <ForgotPassword onOverlayClick={closeForgotPasswordHandler}/>}
-        {filterActive && <Filter onOverlayClick={closeFilterHandler} onRefreshFilterClick={refreshFilterHandler} onCloseFilterClick={closeFilterHandler}/>}
+        {logInActive && (
+          <LogInPopup
+            onOverlayClick={closeLogInHandler}
+            onRegistrationClick={showRegistrationHandler}
+            onForgotPasswordClick={showForgotPasswordHandler}
+          />
+        )}
+        {registrationActive && <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandler} />}
+        {forgotPasswordActive && <ForgotPassword onOverlayClick={closeForgotPasswordHandler} />}
+        {filterActive && (
+          <Filter onOverlayClick={closeFilterHandler} onRefreshFilterClick={refreshFilterHandler} onCloseFilterClick={closeFilterHandler} />
+        )}
       </main>
       <Footer />
     </>
