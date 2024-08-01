@@ -5,7 +5,7 @@ import MasterLogo from "../assets/master-log.png";
 
 const cardData = [
   {
-    id: 10,
+    id: 101,
     pictures: [FirstImg, SecondImg, ThirdImg],
     price: "$35.54",
     startDate: "12 Aug 2022  9:00 PM",
