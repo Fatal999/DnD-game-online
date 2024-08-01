@@ -60,6 +60,10 @@ function RegistrationPopup({ onOverlayClick, onLogInClick }) {
       if (response.ok) {
         showGoodRegistration()
         console.log("Registration successful:", data)
+
+        localStorage.clear()
+        localStorage.setItem("refresh", JSON.stringify(data.refresh))
+        localStorage.setItem("access", JSON.stringify(data.access))
       } else {
         setErrorData(data.errors[0])
         showBadRegistration()

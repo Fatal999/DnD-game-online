@@ -1,9 +1,66 @@
-function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick }) {
+import { useState } from "react"
+
+function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick, onDataReceived }) {
+  const [isChecked, setIsChecked] = useState(false)
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    remember_me: false
+  })
+
+  function handleChange(evt) {
+    const { name, value, type, checked } = evt.target
+
+    if (type === "checkbox") {
+      setIsChecked(checked)
+      setFormData({
+        ...formData,
+        [name]: checked
+      })
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      })
+    }
+  }
+
+  async function handleClick(evt) {
+    evt.preventDefault()
+
+    try {
+      const response = await fetch("https://dnd-game.ru/api/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        console.log("Registration successful:", data)
+
+        onDataReceived(data)
+
+        localStorage.clear()
+        localStorage.setItem("refresh", JSON.stringify(data.refresh))
+        localStorage.setItem("access", JSON.stringify(data.access))
+      } else {
+        console.error("Registration failed:", data)
+      }
+    } catch (error) {
+      console.error("Error:", error)
+    }
+  }
+
   return (
     <div className="main__log-in">
       <div className="overlay" onClick={onOverlayClick}></div>
       <div className="main__log-in-wrapper">
-        <form action="https://echo.htmlacademy.ru/" method="get">
+        <form onSubmit={handleClick}>
           <h1 className="main__log-in-title">Sign in</h1>
           <div className="main__log-in-container">
             <p className="main__log-in-member">Not a member yet?</p>
@@ -13,14 +70,22 @@ function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick
             <label className="main__log-in-email-label">Email adress</label>
             <button className="main__log-in-passwod-show" type="button"></button>
           </div>
-          <input className="main__log-in-email" type="email" name="email" placeholder="Email"></input>
-          <input className="main__log-in-passwod" type="password" name="password" placeholder="Password"></input>
+          <input className="main__log-in-email" type="email" name="email" placeholder="Email" onChange={handleChange}></input>
+          <input className="main__log-in-passwod" type="password" name="password" placeholder="Password" onChange={handleChange}></input>
           <button className="main__log-in-forgot-passwod" type="button" onClick={onForgotPasswordClick}>
             Forgot password?
           </button>
           <div className="main__log-in-check">
             <label className="main__log-in-label" htmlFor="log-in">
-              <input className="main__log-in-checkbox" type="checkbox" id="log-in" name="log-in"></input>
+              <input
+                className="main__log-in-checkbox"
+                type="checkbox"
+                id="log-in"
+                name="remember_me"
+                checked={isChecked}
+                onChange={handleChange}
+                value={isChecked}
+              ></input>
               <span class="main__log-in-label-box"></span>
               Keep me logged in
             </label>
