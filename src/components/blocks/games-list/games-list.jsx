@@ -1,6 +1,6 @@
 import GameCard from "../../ui/game-card/game-card"
 
-function GamesList({cards}) { 
+export default function GamesList({cards}) { 
  if (cards.length === 0) {
   return null;
  } else {
@@ -22,5 +22,3 @@ function GamesList({cards}) {
   )
  }
 }
-
-export default GamesList;

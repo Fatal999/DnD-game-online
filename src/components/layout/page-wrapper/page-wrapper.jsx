@@ -7,7 +7,7 @@ import LogInPopup from "../../popups/log-in/log-in"
 import ForgotPassword from "../../popups/forgot-password/forgot-password"
 import Filter from "../../popups/filter/filter"
 
-function PageWrapper({ ...prop }) {
+export default function PageWrapper({ ...prop }) {
   const [logInActive, setLogInActive] = useState(false)
   const [registrationActive, setRegistrationActive] = useState(false)
   const [forgotPasswordActive, setForgotPasswordActive] = useState(false)
@@ -79,5 +79,3 @@ function PageWrapper({ ...prop }) {
       </>
       )
 }
-
-export default PageWrapper

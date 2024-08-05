@@ -1,4 +1,4 @@
-function UserMenu() {
+export default function UserMenu() {
  return (
    <div className="main__user-menu">
      <button className="main__user-menu-toggler main__user-menu-toggler--active" type="button">All</button>
@@ -7,5 +7,3 @@ function UserMenu() {
    </div>
  )
 }
-
-export default UserMenu; 

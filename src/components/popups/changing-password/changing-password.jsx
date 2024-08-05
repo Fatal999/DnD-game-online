@@ -1,4 +1,4 @@
-function ChangingPassword() {
+export default function ChangingPassword() {
  return (
    <div className="main__changing-password">
      <div className="main__changing-password-wrapper">
@@ -10,5 +10,3 @@ function ChangingPassword() {
    </div>
  ); 
 }
-
-export default ChangingPassword;

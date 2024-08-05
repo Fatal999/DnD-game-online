@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function Filter({ onOverlayClick, onRefreshFilterClick, onCloseFilterClick }) {
+export default function Filter({ onOverlayClick, onRefreshFilterClick, onCloseFilterClick }) {
   const [selectedOption, setSelectedOption] = useState("both")
 
   function handleOptionChange(evt) {
@@ -117,5 +117,3 @@ function Filter({ onOverlayClick, onRefreshFilterClick, onCloseFilterClick }) {
     </div>
   )
 }
-
-export default Filter

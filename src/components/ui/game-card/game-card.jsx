@@ -1,4 +1,4 @@
-function GameCard({pictures, price, startDate, game, gameSystem, accessibility, seatsLeft, masterAvatar, master}) {
+export default function GameCard({pictures, price, startDate, game, gameSystem, accessibility, seatsLeft, masterAvatar, master}) {
  return (
   <>
   <div className="main__games-images">
@@ -28,5 +28,3 @@ function GameCard({pictures, price, startDate, game, gameSystem, accessibility, 
   </>
  )
 }
-
-export default GameCard;

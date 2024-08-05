@@ -1,4 +1,4 @@
-function ForgotPassword({onOverlayClick}) {
+export default function ForgotPassword({onOverlayClick}) {
  return (
    <div className="main__forgot-password">
     <div className="overlay" onClick={onOverlayClick}></div>
@@ -11,5 +11,3 @@ function ForgotPassword({onOverlayClick}) {
    </div>
  );
 }
-
-export default ForgotPassword;

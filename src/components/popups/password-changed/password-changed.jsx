@@ -1,4 +1,4 @@
-function PasswordChanged() {
+export default function PasswordChanged() {
  return (
    <div className="main__password-changed">
      <p className="main__password-changed-title">Password successfully changed!</p>
@@ -6,5 +6,3 @@ function PasswordChanged() {
    </div>
  );
 }
-
-export default PasswordChanged;

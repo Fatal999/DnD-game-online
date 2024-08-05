@@ -1,7 +1,7 @@
 import UserImg from "../../assets/user-img.png";
 import UserAvatar from "../../assets/un-log.svg";
 
-function UsersList() { 
+export default function UsersList() { 
  return (
    <div className="main__users">
      <div className="main__users-wrapper">
@@ -61,5 +61,3 @@ function UsersList() {
    </div>
  )
 }
-
-export default UsersList;

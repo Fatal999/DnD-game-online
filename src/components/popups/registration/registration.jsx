@@ -2,7 +2,7 @@ import { useState } from "react"
 import SuccessfulRegistration from "../../popups/successful-registration/succsessful-registration"
 import ErrorRegistration from "../../popups/error-registration/error-registration"
 
-function RegistrationPopup({ onOverlayClick, onLogInClick }) {
+export default function RegistrationPopup({ onOverlayClick, onLogInClick }) {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -137,5 +137,3 @@ function RegistrationPopup({ onOverlayClick, onLogInClick }) {
     </div>
   )
 }
-
-export default RegistrationPopup

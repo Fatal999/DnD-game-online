@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick }) {
+export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick }) {
   const [isChecked, setIsChecked] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -98,5 +98,3 @@ function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick
     </div>
   )
 }
-
-export default LogInPopup
