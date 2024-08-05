@@ -1,6 +1,11 @@
-import GameCard from "../../ui/game-card/game-card"
+import GameCard from "../../ui/game-card/game-card";
 
 export default function GamesList({cards}) { 
+  function openFullScreen() {
+    console.log("Click");
+    
+  }
+  
  if (cards.length === 0) {
   return null;
  } else {
@@ -12,7 +17,7 @@ export default function GamesList({cards}) {
      </div>
     <ul className="main__games-list">
     {cards.map((card) => (
-        <li className="main__games-item" key={card.id}>
+        <li className="main__games-item" key={card.id} onClick={openFullScreen}>
           <GameCard {...card} />
         </li>
     ))}

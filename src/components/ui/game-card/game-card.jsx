@@ -16,7 +16,7 @@ export default function GameCard({pictures, price, startDate, game, gameSystem, 
   <div className="main__accessibility">
     <label className="main__accessibility-label">Accessibility</label>
     <p className="main__accessibility-status">{accessibility}</p>
-  </div>
+  </div> 
     <div className="main__games-seats">
     <label className="main__games-label">Seats left:</label>
     <p className="main__games-status">{seatsLeft}</p>
