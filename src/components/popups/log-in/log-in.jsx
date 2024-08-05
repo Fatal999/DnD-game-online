@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick, onDataReceived }) {
+function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick }) {
   const [isChecked, setIsChecked] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -42,8 +42,6 @@ function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick
 
       if (response.ok) {
         console.log("Registration successful:", data)
-
-        onDataReceived(data)
 
         localStorage.clear()
         localStorage.setItem("refresh", JSON.stringify(data.refresh))

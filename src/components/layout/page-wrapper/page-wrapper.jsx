@@ -12,11 +12,6 @@ function PageWrapper({ ...prop }) {
   const [registrationActive, setRegistrationActive] = useState(false)
   const [forgotPasswordActive, setForgotPasswordActive] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
-  const [data, setData] = useState(null)
-
-  function handleDataFromChild(responseData) {
-    setData(responseData)
-  }
 
   function showLogInHandler() {
     setLogInActive(true)
@@ -68,7 +63,6 @@ function PageWrapper({ ...prop }) {
               onOverlayClick={closeLogInHandler}
               onRegistrationClick={showRegistrationHandler}
               onForgotPasswordClick={showForgotPasswordHandler}
-              onDataReceived={handleDataFromChild}
             />
           )}
           {registrationActive && <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandler} />}
@@ -83,43 +77,7 @@ function PageWrapper({ ...prop }) {
         </main>
         <Footer />
       </>
-
-  // if (setData(null)) {
-  //   return (
-  //     <>
-  //       <Header onLoginClick={showLogInHandler} onFilterClick={showFilterHandler} />
-  //       <main className="main">
-  //         <HomePage {...prop} />
-  //         {logInActive && (
-  //           <LogInPopup
-  //             onOverlayClick={closeLogInHandler}
-  //             onRegistrationClick={showRegistrationHandler}
-  //             onForgotPasswordClick={showForgotPasswordHandler}
-  //             onDataReceived={handleDataFromChild}
-  //           />
-  //         )}
-  //         {registrationActive && <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandler} />}
-  //         {forgotPasswordActive && <ForgotPassword onOverlayClick={closeForgotPasswordHandler} />}
-  //         {filterActive && (
-  //           <Filter
-  //             onOverlayClick={closeFilterHandler}
-  //             onRefreshFilterClick={refreshFilterHandler}
-  //             onCloseFilterClick={closeFilterHandler}
-  //           />
-  //         )}
-  //       </main>
-  //       <Footer />
-  //     </>
-  //   )
-  // } else {
-  //   return (
-  //     <>
-  //       <Header onLoginClick={showLogInHandler} onFilterClick={showFilterHandler} />
-  //       <main className="main"></main>
-  //       <Footer />
-  //     </>
-  //   )
-  // }
+      )
 }
 
 export default PageWrapper
