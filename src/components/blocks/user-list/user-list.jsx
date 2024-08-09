@@ -1,5 +1,5 @@
-import UserImg from "../../assets/user-img.png";
-import UserAvatar from "../../assets/un-log.svg";
+import UserImg from "../../../assets/user-img.png";
+import UserAvatar from "../../../assets/un-log.svg";
 
 export default function UsersList() { 
  return (

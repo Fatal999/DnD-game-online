@@ -1,33 +1,55 @@
 import { useState } from "react"
+import ErrorRegistration from "../../popups/error-registration/error-registration"
+import SuccessfulRegistration from "../successful-registration/succsessful-registration";
 
-export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick }) {
-  const [isChecked, setIsChecked] = useState(false)
+export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick, logInDone, setlogIn }) {
+  const [isChecked, setIsChecked] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     remember_me: false
-  })
+  });
 
   function handleChange(evt) {
-    const { name, value, type, checked } = evt.target
+    const { name, value, type, checked } = evt.target;
 
     if (type === "checkbox") {
-      setIsChecked(checked)
+      setIsChecked(checked);
       setFormData({
         ...formData,
         [name]: checked
-      })
+      });
     } else {
       setFormData({
         ...formData,
         [name]: value
-      })
+      });
     }
   }
 
+  const [errorData, setErrorData] = useState(null)
+
+  const [goodLogIn, setGoodLogIn] = useState(false)
+
+  function showGoodLogIn() {
+    setGoodLogIn(true)
+  }
+
+  const [badLogIn, setBadLogIn] = useState(false)
+
+  function showBadLogIn() {
+    setBadLogIn(true)
+  }
+
+  const [passwordType, setPasswordType] = useState("password")
+
+  function togglePasswordVisibility() {
+    setPasswordType(passwordType === "password" ? "text" : "password")
+  }
+
   async function handleClick(evt) {
-    evt.preventDefault()
+    evt.preventDefault();
 
     try {
       const response = await fetch("https://dnd-game.ru/api/login/", {
@@ -36,40 +58,47 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
           "Content-Type": "application/json"
         },
         body: JSON.stringify(formData)
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (response.ok) {
-        console.log("Registration successful:", data)
-
-        localStorage.clear()
-        localStorage.setItem("refresh", JSON.stringify(data.refresh))
-        localStorage.setItem("access", JSON.stringify(data.access))
+        console.log("Registration successful:", data);
+        setlogIn(true);
+        showGoodLogIn();
+        localStorage.clear();
+        localStorage.setItem("refresh", JSON.stringify(data.refresh));
+        localStorage.setItem("access", JSON.stringify(data.access));
       } else {
-        console.error("Registration failed:", data)
+        console.error("Registration failed:", data);
+        setErrorData(data.errors[0])
+        showBadLogIn();
       }
     } catch (error) {
-      console.error("Error:", error)
+      console.error("Error:", error);
     }
   }
 
   return (
     <div className="main__log-in">
-      <div className="overlay" onClick={onOverlayClick}></div>
+      <div className="main__log-in-overlay" onClick={onOverlayClick}></div>
       <div className="main__log-in-wrapper">
-        <form onSubmit={handleClick}>
+        <form className="main__log-in-form" onSubmit={handleClick}>
           <h1 className="main__log-in-title">Sign in</h1>
           <div className="main__log-in-container">
             <p className="main__log-in-member">Not a member yet?</p>
             <button className="main__log-in-button" type="button" onClick={onRegistrationClick}>
               Register now
             </button>
-            <label className="main__log-in-email-label">Email adress</label>
-            <button className="main__log-in-passwod-show" type="button"></button>
+            <label className="main__log-in-email-label">Email address</label>
           </div>
           <input className="main__log-in-email" type="email" name="email" placeholder="Email" onChange={handleChange}></input>
-          <input className="main__log-in-passwod" type="password" name="password" placeholder="Password" onChange={handleChange}></input>
+          <div className="main__log-in-wrapp">
+            <input className="main__log-in-passwod" type={passwordType} name="password" placeholder="Password" onChange={handleChange}></input>
+            <button className="main__log-in-passwod-show" type="button" onClick={togglePasswordVisibility}></button>
+          </div>
+          {badLogIn && <ErrorRegistration error={errorData}></ErrorRegistration>}
+          {goodLogIn && <SuccessfulRegistration></SuccessfulRegistration>}
           <button className="main__log-in-forgot-passwod" type="button" onClick={onForgotPasswordClick}>
             Forgot password?
           </button>
@@ -84,7 +113,7 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
                 onChange={handleChange}
                 value={isChecked}
               ></input>
-              <span class="main__log-in-label-box"></span>
+              <span className="main__log-in-label-box"></span>
               Keep me logged in
             </label>
           </div>
@@ -96,5 +125,5 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
         </form>
       </div>
     </div>
-  )
+  );
 }

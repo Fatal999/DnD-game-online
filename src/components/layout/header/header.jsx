@@ -1,4 +1,4 @@
-export default function Header({ onLoginClick, onFilterClick }) {
+export default function Header({ onLoginClick, onFilterClick, logInDone, setlogIn }) {
   return (
     <nav className="header">
       <button className="header__eye" type="button"></button>
@@ -7,7 +7,7 @@ export default function Header({ onLoginClick, onFilterClick }) {
       <button className="header__search" type="button">
         Search
       </button>
-      <button className="header__user" type="button" onClick={onLoginClick}></button>
+      <button className="header__user" type="button" onClick={onLoginClick} disabled={logInDone}></button>
     </nav>
   )
 }

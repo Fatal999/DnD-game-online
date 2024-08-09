@@ -31,7 +31,7 @@ export default function Filter({ onOverlayClick, onRefreshFilterClick, onCloseFi
                     checked={selectedOption === "both"}
                     onChange={handleOptionChange}
                   ></input>
-                  <span class="main__filter-accessibility-box"></span>
+                  <span className="main__filter-accessibility-box"></span>
                   Both
                 </label>
               </li>
@@ -46,7 +46,7 @@ export default function Filter({ onOverlayClick, onRefreshFilterClick, onCloseFi
                     checked={selectedOption === "online"}
                     onChange={handleOptionChange}
                   ></input>
-                  <span class="main__filter-accessibility-box"></span>
+                  <span className="main__filter-accessibility-box"></span>
                   Online
                 </label>
               </li>
@@ -61,7 +61,7 @@ export default function Filter({ onOverlayClick, onRefreshFilterClick, onCloseFi
                     checked={selectedOption === "offline"}
                     onChange={handleOptionChange}
                   ></input>
-                  <span class="main__filter-accessibility-box"></span>
+                  <span className="main__filter-accessibility-box"></span>
                   Offline
                 </label>
               </li>
@@ -74,7 +74,7 @@ export default function Filter({ onOverlayClick, onRefreshFilterClick, onCloseFi
                     name="accessibility"
                     value="beginners"
                   ></input>
-                  <span class="main__filter-accessibility-check"></span>
+                  <span className="main__filter-accessibility-check"></span>
                   For Beginners
                 </label>
               </li>
