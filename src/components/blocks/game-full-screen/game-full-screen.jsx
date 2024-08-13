@@ -1,21 +1,21 @@
-export default function GameFullScreen() {
+export default function GameFullScreen({closeGameFullScreen}) {
     return (
         <>
             <div> 
-                <button type="button"></button>
+                <button type="button" onClick={closeGameFullScreen}></button>
                 <p>Games</p>
                 <button type="button"></button>
                 <button type="button"></button>
             </div>  
             <div>
-                <img src="#"></img>
-                <img src="#"></img>
-                <img src="#"></img>
-                <img src="#"></img>
-                <img src="#"></img>
+                <img src="#" alt="."></img>
+                <img src="#" alt="."></img>
+                <img src="#" alt="."></img>
+                <img src="#" alt="."></img>
+                <img src="#" alt="."></img>
             </div>
             <div>
-                <h1></h1>    
+                <h1>Title</h1>    
                 <label></label>     
                 <label></label>   
             </div>

@@ -8,6 +8,8 @@ import ForgotPassword from "../../popups/forgot-password/forgot-password"
 import Filter from "../../popups/filter/filter"
 import UsersList from "../../blocks/user-list/user-list"
 import UserMenu from "../../blocks/user-menu/user-menu"
+import GameFullScreen from "../../blocks/game-full-screen/game-full-screen"
+import ProfilePopup from "../../popups/profile-popup/profile-popup"
 
 export default function PageWrapper({cards, ...props}) {
   const [logInActive, setLogInActive] = useState(false);
@@ -16,6 +18,36 @@ export default function PageWrapper({cards, ...props}) {
   const [filterActive, setFilterActive] = useState(false);
   const [logInDone, setlogIn] = useState(false);
   const [showLogInList, setShowLogInList] = useState(false);
+  const [tokensPresent, setTokensPresent] = useState(false);
+  const [gameFullScreen, setGameFullScreen] = useState(false);
+  const [openProfileActive, setOpenProfile] = useState(false);
+
+  function openProfile() {
+    setOpenProfile(true);
+  }
+  
+  function closeProfile() {
+    setOpenProfile(false);
+  }
+
+  function openGameFullScreen() {
+    setGameFullScreen(true); 
+  }
+
+  function closeGameFullScreen() {
+    setGameFullScreen(false);
+  }
+  
+  useEffect(() => {
+    const accessToken = localStorage.getItem('access');
+    const refreshToken = localStorage.getItem('refresh');
+
+    if (accessToken && refreshToken) {
+      setTokensPresent(true);
+    } else {
+      setTokensPresent(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (logInDone) {
@@ -65,39 +97,67 @@ export default function PageWrapper({cards, ...props}) {
 
   return (
     <>
-      <Header onLoginClick={showLogInHandler} onFilterClick={showFilterHandler} logInDone={logInDone} setlogIn={setlogIn} />
-      <main className="main">
-        {showLogInList && (
-            <UserMenu  />
+      {tokensPresent ? (
+        <>
+          <Header onLoginClick={showLogInHandler} onFilterClick={showFilterHandler} tokensPresent={tokensPresent} openProfile={openProfile}/>
+          <main className="main">
+          {openProfileActive && <ProfilePopup onOverlayClick={closeProfile}/>}
+          {gameFullScreen ? (
+            <GameFullScreen closeGameFullScreen={closeGameFullScreen}/>
+          ) : (
+            <>
+            <GamesList cards={cards} openGameFullScreen={openGameFullScreen} tokensPresent={tokensPresent}/>
+            {filterActive && (
+              <Filter
+                onOverlayClick={closeFilterHandler}
+                onRefreshFilterClick={refreshFilterHandler}
+                onCloseFilterClick={closeFilterHandler}
+              />
+            )}
+            </>
           )}
-        {showLogInList && (
-            <UsersList  />
+          </main>
+          <Footer />
+        </>
+      ) : (
+        <>
+        <Header onLoginClick={showLogInHandler} onFilterClick={showFilterHandler} />
+        <main className="main">
+          {gameFullScreen ? (
+            <GameFullScreen closeGameFullScreen={closeGameFullScreen}/>
+          ) : (
+            <>
+            {showLogInList && <UserMenu />}
+            {showLogInList && <UsersList />}
+            <GamesList cards={cards} openGameFullScreen={openGameFullScreen} tokensPresent={tokensPresent}/>
+            {logInActive && (
+              <LogInPopup
+                onOverlayClick={closeLogInHandler}
+                onRegistrationClick={showRegistrationHandler}
+                onForgotPasswordClick={showForgotPasswordHandler}
+                logInDone={logInDone}
+                setlogIn={setlogIn}
+              />
+            )}
+            {registrationActive && (
+              <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandler} />
+            )}
+            {forgotPasswordActive && (
+              <ForgotPassword onOverlayClick={closeForgotPasswordHandler} />
+            )}
+            {filterActive && (
+              <Filter
+                onOverlayClick={closeFilterHandler}
+                onRefreshFilterClick={refreshFilterHandler}
+                onCloseFilterClick={closeFilterHandler}
+              />
+            )}
+            </>
           )}
-        <GamesList cards={cards}/>
-        {logInActive && (
-          <LogInPopup
-            onOverlayClick={closeLogInHandler}
-            onRegistrationClick={showRegistrationHandler}
-            onForgotPasswordClick={showForgotPasswordHandler}
-            logInDone={logInDone}    
-            setlogIn={setlogIn}          
-          />
-        )}
-        {registrationActive && (
-          <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandler} />
-        )}
-        {forgotPasswordActive && (
-          <ForgotPassword onOverlayClick={closeForgotPasswordHandler} />
-        )}
-        {filterActive && (
-          <Filter
-            onOverlayClick={closeFilterHandler}
-            onRefreshFilterClick={refreshFilterHandler}
-            onCloseFilterClick={closeFilterHandler}
-          />
-        )}
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </>
+      )}
     </>
   );
 }
