@@ -534,18 +534,11 @@ body {
   grid-row-end: 2;
 }
 
-.main__games-images-second {
+.main__games-images-additional {
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 1;
-}
-
-.main__games-images-third {
-  grid-column-start: 2;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 2;
 }
 
 .main__games-price {

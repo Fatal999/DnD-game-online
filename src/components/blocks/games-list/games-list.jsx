@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import GameCard from "../../ui/game-card/game-card";
-import LogInUserList from "../../blocks/log-in-user-list/log-in-user-list";
 
 export default function GamesList({ openGameFullScreen, tokensPresent }) {
   const [cards, setCards] = useState(null);
@@ -18,7 +17,6 @@ export default function GamesList({ openGameFullScreen, tokensPresent }) {
 
       if (response.ok) {
         setCards(cards);
-        console.log("Done:", cards);
       } else {
         console.log("Nope:", cards);
       }
@@ -31,8 +29,7 @@ export default function GamesList({ openGameFullScreen, tokensPresent }) {
     <div className="main__games">
       <div className="main__games-wrapper"> 
         <label className="main__games-title">Games</label>
-        {tokensPresent ? <LogInUserList /> : <></>}
-        {tokensPresent ? <></> : <p className="main__games-count">{cards && cards.games ? cards.games.length : "Loading..."}</p>}
+        <p className="main__games-count">{cards && cards.games ? cards.games.length : "Loading..."}</p>
       </div>
       <ul className="main__games-list">
         {cards && cards.games ? (
@@ -40,7 +37,7 @@ export default function GamesList({ openGameFullScreen, tokensPresent }) {
             <li
               className="main__games-item"
               key={game.id}
-              onClick={openGameFullScreen}
+              onClick={() => openGameFullScreen(game.title)}
             >
               <GameCard
                 title={game.title} 
@@ -51,7 +48,7 @@ export default function GamesList({ openGameFullScreen, tokensPresent }) {
                 accessibility={game.accessibility}
                 fromGroup={game.from_group}
                 user={game.user.display_name}
-                pictureOne={game.images[0].image}
+                pictures={game.images}
               />
             </li>
           ))

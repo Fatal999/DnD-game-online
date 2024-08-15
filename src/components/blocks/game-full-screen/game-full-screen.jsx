@@ -1,21 +1,28 @@
-export default function GameFullScreen({closeGameFullScreen}) {
+export default function GameFullScreen({closeGameFullScreen, title}) {
+    // const gamePicUrl ="https://dnd-game.ru/";
+
     return (
         <>
             <div> 
-                <button type="button" onClick={closeGameFullScreen}></button>
+                <button type="button" onClick={closeGameFullScreen}>Close</button>
                 <p>Games</p>
-                <button type="button"></button>
-                <button type="button"></button>
+                <button type="button">Like</button>
+                <button type="button">Copy</button>
             </div>  
             <div>
-                <img src="#" alt="."></img>
-                <img src="#" alt="."></img>
-                <img src="#" alt="."></img>
-                <img src="#" alt="."></img>
-                <img src="#" alt="."></img>
+                {/* {cards.games.images.slice(0, 10).map((picture, id) => (
+                    <img
+                    key={id}
+                    className={main__games-images-${id === 0 ? 'first' : 'additional'}}
+                    src={${gamePicUrl}${picture.image}}
+                    width={id === 0 ? "244" : "80"}
+                    height={id === 0 ? "164" : "80"}
+                    alt="Pic."
+                    />
+                ))} */}
             </div>
             <div>
-                <h1>Title</h1>    
+                <h1>{title}</h1>    
                 <label></label>     
                 <label></label>   
             </div>

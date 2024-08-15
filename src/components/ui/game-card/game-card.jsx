@@ -1,10 +1,18 @@
-export default function GameCard({title, price, startDate, gameSystems, accessibility, fromGroup, masterAvatar, user, pictureOne}) {
+export default function GameCard({title, price, startDate, gameSystems, accessibility, fromGroup, masterAvatar, user, pictures}) {
+  const gamePicUrl ="https://dnd-game.ru/";
  return (
   <>
   <div className="main__games-images">
-    <img className="main__games-images-first" src={pictureOne} width="244" height="164" alt="Main."></img>
-    {/* <img className="main__games-images-second" src={pictures[1]} width="80" height="80" alt="Add."></img>
-    <img className="main__games-images-third" src={pictures[2]} width="80" height="80" alt="Add."></img> */}
+    {pictures.slice(0, 10).map((picture, id) => (
+      <img
+        key={id}
+        className={`main__games-images-${id === 0 ? 'first' : 'additional'}`}
+        src={`${gamePicUrl}${picture.image}`}
+        width={id === 0 ? "244" : "80"}
+        height={id === 0 ? "164" : "80"}
+        alt="Pic."
+      />
+    ))}
     <p className="main__games-price">{price}</p>
   </div>
   <div className="main__date">

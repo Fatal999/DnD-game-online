@@ -6,8 +6,6 @@ import RegistrationPopup from "../../popups/registration/registration"
 import LogInPopup from "../../popups/log-in/log-in"
 import ForgotPassword from "../../popups/forgot-password/forgot-password"
 import Filter from "../../popups/filter/filter"
-import UsersList from "../../blocks/user-list/user-list"
-import UserMenu from "../../blocks/user-menu/user-menu"
 import GameFullScreen from "../../blocks/game-full-screen/game-full-screen"
 import ProfilePopup from "../../popups/profile-popup/profile-popup"
 
@@ -17,10 +15,10 @@ export default function PageWrapper({cards, ...props}) {
   const [forgotPasswordActive, setForgotPasswordActive] = useState(false);
   const [filterActive, setFilterActive] = useState(false);
   const [logInDone, setlogIn] = useState(false);
-  const [showLogInList, setShowLogInList] = useState(false);
   const [tokensPresent, setTokensPresent] = useState(false);
   const [gameFullScreen, setGameFullScreen] = useState(false);
   const [openProfileActive, setOpenProfile] = useState(false);
+  const [selectedGameTitle, setSelectedGameTitle] = useState('');
 
   function openProfile() {
     setOpenProfile(true);
@@ -30,7 +28,8 @@ export default function PageWrapper({cards, ...props}) {
     setOpenProfile(false);
   }
 
-  function openGameFullScreen() {
+  function openGameFullScreen(title) {
+    setSelectedGameTitle(title);
     setGameFullScreen(true); 
   }
 
@@ -48,12 +47,6 @@ export default function PageWrapper({cards, ...props}) {
       setTokensPresent(false);
     }
   }, []);
-
-  useEffect(() => {
-    if (logInDone) {
-      setShowLogInList(true);
-    }
-  }, [logInDone]);
 
   function showLogInHandler() {
     setLogInActive(true);
@@ -103,7 +96,7 @@ export default function PageWrapper({cards, ...props}) {
           <main className="main">
           {openProfileActive && <ProfilePopup onOverlayClick={closeProfile}/>}
           {gameFullScreen ? (
-            <GameFullScreen closeGameFullScreen={closeGameFullScreen}/>
+            <GameFullScreen closeGameFullScreen={closeGameFullScreen} title={selectedGameTitle}/>
           ) : (
             <>
             <GamesList cards={cards} openGameFullScreen={openGameFullScreen} tokensPresent={tokensPresent}/>
@@ -127,8 +120,6 @@ export default function PageWrapper({cards, ...props}) {
             <GameFullScreen closeGameFullScreen={closeGameFullScreen}/>
           ) : (
             <>
-            {showLogInList && <UserMenu />}
-            {showLogInList && <UsersList />}
             <GamesList cards={cards} openGameFullScreen={openGameFullScreen} tokensPresent={tokensPresent}/>
             {logInActive && (
               <LogInPopup
