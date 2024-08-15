@@ -19,6 +19,14 @@ export default function PageWrapper({cards, ...props}) {
   const [gameFullScreen, setGameFullScreen] = useState(false);
   const [openProfileActive, setOpenProfile] = useState(false);
   const [selectedGameTitle, setSelectedGameTitle] = useState('');
+  const [selectedGameDescription, setSelectedGameDescription] = useState('');
+  const [selectedGamePictures, setSelectedGamePictures] = useState('');
+  const [selectedGameАccessibility, setSelectedGameАccessibility] = useState('');
+  const [selectedGameSystems, setSelectedGameSystems] = useState('');
+  const [selectedGamePlatform, setSelectedGamePlatform] = useState('');
+  const [selectedGameGenres, setSelectedGameGenres] = useState('');
+  const [selectedGameSeats, setSelectedGameSeats] = useState('');
+  const [selectedGameFormat, setSelectedGameFormat] = useState('');
 
   function openProfile() {
     setOpenProfile(true);
@@ -28,8 +36,16 @@ export default function PageWrapper({cards, ...props}) {
     setOpenProfile(false);
   }
 
-  function openGameFullScreen(title) {
+  function openGameFullScreen(title, description, pictures, accessibility, gameSystems, platform, genres, seats, format) {
     setSelectedGameTitle(title);
+    setSelectedGameDescription(description);
+    setSelectedGamePictures(pictures);
+    setSelectedGameАccessibility(accessibility);
+    setSelectedGameSystems(gameSystems);
+    setSelectedGamePlatform(platform);
+    setSelectedGameGenres(genres);
+    setSelectedGameSeats(seats);
+    setSelectedGameFormat(format);
     setGameFullScreen(true); 
   }
 
@@ -96,7 +112,7 @@ export default function PageWrapper({cards, ...props}) {
           <main className="main">
           {openProfileActive && <ProfilePopup onOverlayClick={closeProfile}/>}
           {gameFullScreen ? (
-            <GameFullScreen closeGameFullScreen={closeGameFullScreen} title={selectedGameTitle}/>
+            <GameFullScreen closeGameFullScreen={closeGameFullScreen} title={selectedGameTitle} description={selectedGameDescription} pictures={selectedGamePictures} accessibility={selectedGameАccessibility} gameSystems={selectedGameSystems} platform={selectedGamePlatform} genres={selectedGameGenres} seats={selectedGameSeats} format={selectedGameFormat}/>
           ) : (
             <>
             <GamesList cards={cards} openGameFullScreen={openGameFullScreen} tokensPresent={tokensPresent}/>

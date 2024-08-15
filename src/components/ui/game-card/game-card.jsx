@@ -1,4 +1,4 @@
-export default function GameCard({title, price, startDate, gameSystems, accessibility, fromGroup, masterAvatar, user, pictures}) {
+export default function GameCard({title, price, startDate, gameSystems, accessibility, seatsLeft, userName, pictures, userAvatar}) {
   const gamePicUrl ="https://dnd-game.ru/";
  return (
   <>
@@ -11,7 +11,7 @@ export default function GameCard({title, price, startDate, gameSystems, accessib
         width={id === 0 ? "244" : "80"}
         height={id === 0 ? "164" : "80"}
         alt="Pic."
-      />
+      /> 
     ))}
     <p className="main__games-price">{price}</p>
   </div>
@@ -27,11 +27,11 @@ export default function GameCard({title, price, startDate, gameSystems, accessib
   </div> 
     <div className="main__games-seats">
     <label className="main__games-label">Seats left:</label>
-    <p className="main__games-status">{fromGroup}</p>
+    <p className="main__games-status">{seatsLeft}</p>
   </div>
     <div className="main__master">
     <label className="main__master-label">Master:</label>
-    <p className="main__master-name" style={{ backgroundImage: `url(${masterAvatar})` }}>{user}</p>
+    <p className="main__master-name" style={{ backgroundImage: `url(${gamePicUrl}${userAvatar})`}}>{userName}</p>
   </div>
   </>
  )

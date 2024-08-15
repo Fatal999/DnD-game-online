@@ -1,8 +1,8 @@
-export default function GameFullScreen({closeGameFullScreen, title}) {
-    // const gamePicUrl ="https://dnd-game.ru/";
+export default function GameFullScreen({closeGameFullScreen, title, description, pictures, gameSystems, platform, genres, seats, format}) {
+    const gamePicUrl ="https://dnd-game.ru/";
 
     return (
-        <>
+        <> 
             <div> 
                 <button type="button" onClick={closeGameFullScreen}>Close</button>
                 <p>Games</p>
@@ -10,33 +10,32 @@ export default function GameFullScreen({closeGameFullScreen, title}) {
                 <button type="button">Copy</button>
             </div>  
             <div>
-                {/* {cards.games.images.slice(0, 10).map((picture, id) => (
-                    <img
-                    key={id}
-                    className={main__games-images-${id === 0 ? 'first' : 'additional'}}
-                    src={${gamePicUrl}${picture.image}}
-                    width={id === 0 ? "244" : "80"}
-                    height={id === 0 ? "164" : "80"}
-                    alt="Pic."
-                    />
-                ))} */}
+            {pictures.slice(0, 10).map((picture, id) => (
+            <img
+               key={id}
+               src={`${gamePicUrl}${picture.image}`}
+               width={id === 0 ? "244" : "80"}
+               height={id === 0 ? "164" : "80"}
+               alt="Pic."
+            /> 
+            ))}
             </div>
             <div>
                 <h1>{title}</h1>    
-                <label></label>     
-                <label></label>   
+                <label>{seats} seats left</label>  
+                <label>{format}</label>     
             </div>
             <div>
                 <div>
                     <h2>General</h2>
                     <p>Game Systems</p>
-                    <label></label>
+                    <label>{gameSystems}</label>
                     <p>Platform (VTT)</p>
-                    <label></label>
+                    <label>{platform}</label>
                     <p>Game Genres & Settings</p>
-                    <label></label>
+                    <label>{genres}</label>
                     <h2>Description</h2>
-                    <p></p>
+                    <p>{description}</p>
                 </div>
                 <div>
                     <h2>Information</h2>

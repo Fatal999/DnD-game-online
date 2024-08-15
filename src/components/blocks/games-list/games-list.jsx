@@ -17,6 +17,7 @@ export default function GamesList({ openGameFullScreen, tokensPresent }) {
 
       if (response.ok) {
         setCards(cards);
+        console.log(cards);
       } else {
         console.log("Nope:", cards);
       }
@@ -33,11 +34,11 @@ export default function GamesList({ openGameFullScreen, tokensPresent }) {
       </div>
       <ul className="main__games-list">
         {cards && cards.games ? (
-          cards.games.map((game) => (           
+          cards.games.map((game) => (            
             <li
               className="main__games-item"
               key={game.id}
-              onClick={() => openGameFullScreen(game.title)}
+              onClick={() => openGameFullScreen(game.title, game.description, game.images, game.accessibility, game.game_systems, game.platform, game.genres_settings, game.group_members.seats_left, game.game_format)} 
             >
               <GameCard
                 title={game.title} 
@@ -46,8 +47,9 @@ export default function GamesList({ openGameFullScreen, tokensPresent }) {
                 price={game.price}
                 gameSystems={game.game_systems}
                 accessibility={game.accessibility}
-                fromGroup={game.from_group}
-                user={game.user.display_name}
+                seatsLeft={game.group_members.seats_left}
+                userName={game.user.display_name}
+                userAvatar={game.user.avatar}
                 pictures={game.images}
               />
             </li>
