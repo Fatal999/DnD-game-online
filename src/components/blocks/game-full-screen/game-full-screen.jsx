@@ -155,7 +155,7 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
               <span>{data.home_rules}</span>
               <button type="button">Read rules</button>
               {!tokensPresent && <SaveButton onClick={showLogInHandler} />}
-              {tokensPresent && <SaveButton onClick={console.log("SAVE")} />}
+              {tokensPresent && <SaveButton onClick={console.log("SAVE!!")} />}
             </div>
             <div>
               <h2>Master</h2>
