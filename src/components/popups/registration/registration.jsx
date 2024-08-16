@@ -2,7 +2,7 @@ import { useState } from "react"
 import SuccessfulRegistration from "../../popups/successful-registration/succsessful-registration"
 import ErrorRegistration from "../../popups/error-registration/error-registration"
 
-export default function RegistrationPopup({ onOverlayClick, onLogInClick }) {
+export default function RegistrationPopup({ onOverlayClick, onLogInClick, domain }) {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -47,7 +47,7 @@ export default function RegistrationPopup({ onOverlayClick, onLogInClick }) {
     evt.preventDefault()
 
     try {
-      const response = await fetch("https://dnd-game.ru/api/register/", {
+      const response = await fetch(`${domain}api/register/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -12,6 +12,6 @@ export default function Header({ onLoginClick, onFilterClick, tokensPresent, ope
       ) : (
         <button className="header__user" type="button" onClick={onLoginClick}></button>
       )}
-    </nav> 
+    </nav>
   )
 }

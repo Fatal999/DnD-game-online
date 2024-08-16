@@ -1,30 +1,30 @@
 import { useState } from "react"
 import ErrorRegistration from "../../popups/error-registration/error-registration"
-import SuccessfulRegistration from "../successful-registration/succsessful-registration";
+import SuccessfulRegistration from "../successful-registration/succsessful-registration"
 
-export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick, setlogIn }) {
-  const [isChecked, setIsChecked] = useState(false);
+export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick, setlogIn, domain }) {
+  const [isChecked, setIsChecked] = useState(false)
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     remember_me: false
-  });
+  })
 
   function handleChange(evt) {
-    const { name, value, type, checked } = evt.target;
+    const { name, value, type, checked } = evt.target
 
     if (type === "checkbox") {
-      setIsChecked(checked);
+      setIsChecked(checked)
       setFormData({
         ...formData,
         [name]: checked
-      });
+      })
     } else {
       setFormData({
         ...formData,
         [name]: value
-      });
+      })
     }
   }
 
@@ -49,34 +49,34 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
   }
 
   async function handleClick(evt) {
-    evt.preventDefault();
+    evt.preventDefault()
 
     try {
-      const response = await fetch("https://dnd-game.ru/api/login/", {
+      const response = await fetch(`${domain}api/login/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(formData)
-      });
+      })
 
-      const data = await response.json();
+      const data = await response.json()
 
       if (response.ok) {
-        console.log("Registration successful:", data);
-        setlogIn(true);
-        showGoodLogIn();
-        localStorage.clear();
-        localStorage.setItem("refresh", JSON.stringify(data.refresh));
-        localStorage.setItem("access", JSON.stringify(data.access));
-        window.location.reload();
+        console.log("Registration successful:", data)
+        setlogIn(true)
+        showGoodLogIn()
+        localStorage.clear()
+        localStorage.setItem("refresh", JSON.stringify(data.refresh))
+        localStorage.setItem("access", JSON.stringify(data.access))
+        window.location.reload()
       } else {
-        console.error("Registration failed:", data);
+        console.error("Registration failed:", data)
         setErrorData(data.errors[0])
-        showBadLogIn();
+        showBadLogIn()
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error:", error)
     }
   }
 
@@ -95,7 +95,13 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
           </div>
           <input className="main__log-in-email" type="email" name="email" placeholder="Email" onChange={handleChange}></input>
           <div className="main__log-in-wrapp">
-            <input className="main__log-in-passwod" type={passwordType} name="password" placeholder="Password" onChange={handleChange}></input>
+            <input
+              className="main__log-in-passwod"
+              type={passwordType}
+              name="password"
+              placeholder="Password"
+              onChange={handleChange}
+            ></input>
             <button className="main__log-in-passwod-show" type="button" onClick={togglePasswordVisibility}></button>
           </div>
           {badLogIn && <ErrorRegistration error={errorData}></ErrorRegistration>}
@@ -126,5 +132,5 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
         </form>
       </div>
     </div>
-  );
+  )
 }

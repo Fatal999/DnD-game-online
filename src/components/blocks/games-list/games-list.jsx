@@ -1,48 +1,49 @@
-import { useState, useEffect } from "react";
-import GameCard from "../../ui/game-card/game-card";
+import { useState, useEffect } from "react"
+import GameCard from "../../ui/game-card/game-card"
 
-export default function GamesList({ openGameFullScreen, tokensPresent }) {
-  const [cards, setCards] = useState(null);
+export default function GamesList({ openGameFullScreen, tokensPresent, domain, onGameClick }) {
+  const [cards, setCards] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("https://dnd-game.ru/api/game/all/", {
+      const response = await fetch(`${domain}api/game/all/`, {
         method: "GET",
         headers: {
-          "Content-Type": "application/json",
-        },
-      });
+          "Content-Type": "application/json"
+        }
+      })
 
-      const cards = await response.json();
+      const cards = await response.json()
 
       if (response.ok) {
-        setCards(cards);
-        console.log(cards);
+        setCards(cards)
+        console.log(cards)
       } else {
-        console.log("Nope:", cards);
+        console.log("Nope:", cards)
       }
     }
+    fetchData()
+  }, [domain])
 
-    fetchData();
-  }, []);
+  function handleGameClick(gameId) {
+    onGameClick(gameId)
+    openGameFullScreen()
+  }
 
   return (
     <div className="main__games">
-      <div className="main__games-wrapper"> 
+      <div className="main__games-wrapper">
         <label className="main__games-title">Games</label>
         <p className="main__games-count">{cards && cards.games ? cards.games.length : "Loading..."}</p>
       </div>
       <ul className="main__games-list">
         {cards && cards.games ? (
-          cards.games.map((game) => (            
-            <li
-              className="main__games-item"
-              key={game.id}
-              onClick={() => openGameFullScreen(game.title, game.description, game.images, game.accessibility, game.game_systems, game.platform, game.genres_settings, game.group_members.seats_left, game.game_format)} 
-            >
+          cards.games.map((game) => (
+            <li className="main__games-item" key={game.id} onClick={() => handleGameClick(game.id)}>
               <GameCard
-                title={game.title} 
-                description={game.description} 
+                domain={domain}
+                title={game.title}
+                description={game.description}
                 startDate={game.start_date}
                 price={game.price}
                 gameSystems={game.game_systems}
@@ -58,7 +59,13 @@ export default function GamesList({ openGameFullScreen, tokensPresent }) {
           <p>Loading games...</p>
         )}
       </ul>
-      {tokensPresent ? <button className="main__games-button" type="button">+</button> : <></>}
+      {tokensPresent ? (
+        <button className="main__games-button" type="button">
+          +
+        </button>
+      ) : (
+        <></>
+      )}
     </div>
-  );
+  )
 }

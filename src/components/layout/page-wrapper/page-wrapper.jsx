@@ -9,162 +9,175 @@ import Filter from "../../popups/filter/filter"
 import GameFullScreen from "../../blocks/game-full-screen/game-full-screen"
 import ProfilePopup from "../../popups/profile-popup/profile-popup"
 
-export default function PageWrapper({cards, ...props}) {
-  const [logInActive, setLogInActive] = useState(false);
-  const [registrationActive, setRegistrationActive] = useState(false);
-  const [forgotPasswordActive, setForgotPasswordActive] = useState(false);
-  const [filterActive, setFilterActive] = useState(false);
-  const [logInDone, setlogIn] = useState(false);
-  const [tokensPresent, setTokensPresent] = useState(false);
-  const [gameFullScreen, setGameFullScreen] = useState(false);
-  const [openProfileActive, setOpenProfile] = useState(false);
-  const [selectedGameTitle, setSelectedGameTitle] = useState('');
-  const [selectedGameDescription, setSelectedGameDescription] = useState('');
-  const [selectedGamePictures, setSelectedGamePictures] = useState('');
-  const [selectedGameАccessibility, setSelectedGameАccessibility] = useState('');
-  const [selectedGameSystems, setSelectedGameSystems] = useState('');
-  const [selectedGamePlatform, setSelectedGamePlatform] = useState('');
-  const [selectedGameGenres, setSelectedGameGenres] = useState('');
-  const [selectedGameSeats, setSelectedGameSeats] = useState('');
-  const [selectedGameFormat, setSelectedGameFormat] = useState('');
+export default function PageWrapper({ cards, domain, ...props }) {
+  const [logInActive, setLogInActive] = useState(false)
+  const [registrationActive, setRegistrationActive] = useState(false)
+  const [forgotPasswordActive, setForgotPasswordActive] = useState(false)
+  const [filterActive, setFilterActive] = useState(false)
+  const [logInDone, setlogIn] = useState(false)
+  const [tokensPresent, setTokensPresent] = useState(false)
+  const [gameFullScreen, setGameFullScreen] = useState(false)
+  const [openProfileActive, setOpenProfile] = useState(false)
+  const [selectedGameId, setSelectedGameId] = useState(null)
+
+  function handleGameClick(gameId) {
+    setSelectedGameId(gameId)
+  }
 
   function openProfile() {
-    setOpenProfile(true);
-  }
-  
-  function closeProfile() {
-    setOpenProfile(false);
+    setOpenProfile(true)
   }
 
-  function openGameFullScreen(title, description, pictures, accessibility, gameSystems, platform, genres, seats, format) {
-    setSelectedGameTitle(title);
-    setSelectedGameDescription(description);
-    setSelectedGamePictures(pictures);
-    setSelectedGameАccessibility(accessibility);
-    setSelectedGameSystems(gameSystems);
-    setSelectedGamePlatform(platform);
-    setSelectedGameGenres(genres);
-    setSelectedGameSeats(seats);
-    setSelectedGameFormat(format);
-    setGameFullScreen(true); 
+  function closeProfile() {
+    setOpenProfile(false)
+  }
+
+  function openGameFullScreen() {
+    setGameFullScreen(true)
   }
 
   function closeGameFullScreen() {
-    setGameFullScreen(false);
+    setGameFullScreen(false)
   }
-  
+
   useEffect(() => {
-    const accessToken = localStorage.getItem('access');
-    const refreshToken = localStorage.getItem('refresh');
+    const accessToken = localStorage.getItem("access")
+    const refreshToken = localStorage.getItem("refresh")
 
     if (accessToken && refreshToken) {
-      setTokensPresent(true);
+      setTokensPresent(true)
     } else {
-      setTokensPresent(false);
+      setTokensPresent(false)
     }
-  }, []);
+  }, [])
 
   function showLogInHandler() {
-    setLogInActive(true);
-    setRegistrationActive(false);
+    setLogInActive(true)
+    setRegistrationActive(false)
   }
 
   function closeLogInHandler() {
-    setLogInActive(false);
+    setLogInActive(false)
   }
 
   function showRegistrationHandler() {
-    setRegistrationActive(true);
-    setLogInActive(false);
+    setRegistrationActive(true)
+    setLogInActive(false)
   }
 
   function closeRegistrationHandler() {
-    setRegistrationActive(false);
+    setRegistrationActive(false)
   }
 
   function showForgotPasswordHandler() {
-    setForgotPasswordActive(true);
-    setLogInActive(false);
+    setForgotPasswordActive(true)
+    setLogInActive(false)
   }
 
   function closeForgotPasswordHandler() {
-    setForgotPasswordActive(false);
+    setForgotPasswordActive(false)
   }
 
   function showFilterHandler() {
-    setFilterActive(true);
+    setFilterActive(true)
   }
 
   function closeFilterHandler() {
-    setFilterActive(false);
+    setFilterActive(false)
   }
 
   function refreshFilterHandler() {
-    setFilterActive(false);
-    setFilterActive(true);
+    setFilterActive(false)
+    setFilterActive(true)
   }
 
   return (
     <>
       {tokensPresent ? (
         <>
-          <Header onLoginClick={showLogInHandler} onFilterClick={showFilterHandler} tokensPresent={tokensPresent} openProfile={openProfile}/>
+          <Header
+            onLoginClick={showLogInHandler}
+            onFilterClick={showFilterHandler}
+            tokensPresent={tokensPresent}
+            openProfile={openProfile}
+          />
           <main className="main">
-          {openProfileActive && <ProfilePopup onOverlayClick={closeProfile}/>}
-          {gameFullScreen ? (
-            <GameFullScreen closeGameFullScreen={closeGameFullScreen} title={selectedGameTitle} description={selectedGameDescription} pictures={selectedGamePictures} accessibility={selectedGameАccessibility} gameSystems={selectedGameSystems} platform={selectedGamePlatform} genres={selectedGameGenres} seats={selectedGameSeats} format={selectedGameFormat}/>
-          ) : (
-            <>
-            <GamesList cards={cards} openGameFullScreen={openGameFullScreen} tokensPresent={tokensPresent}/>
-            {filterActive && (
-              <Filter
-                onOverlayClick={closeFilterHandler}
-                onRefreshFilterClick={refreshFilterHandler}
-                onCloseFilterClick={closeFilterHandler}
+            {openProfileActive && <ProfilePopup onOverlayClick={closeProfile} domain={domain} />}
+            {gameFullScreen ? (
+              <GameFullScreen
+                closeGameFullScreen={closeGameFullScreen}
+                domain={domain}
+                selectedGameId={selectedGameId}
+                tokensPresent={tokensPresent}
               />
+            ) : (
+              <>
+                <GamesList
+                  cards={cards}
+                  openGameFullScreen={openGameFullScreen}
+                  tokensPresent={tokensPresent}
+                  domain={domain}
+                  onGameClick={handleGameClick}
+                />
+                {filterActive && (
+                  <Filter
+                    onOverlayClick={closeFilterHandler}
+                    onRefreshFilterClick={refreshFilterHandler}
+                    onCloseFilterClick={closeFilterHandler}
+                  />
+                )}
+              </>
             )}
-            </>
-          )}
           </main>
           <Footer />
         </>
       ) : (
         <>
-        <Header onLoginClick={showLogInHandler} onFilterClick={showFilterHandler} />
-        <main className="main">
-          {gameFullScreen ? (
-            <GameFullScreen closeGameFullScreen={closeGameFullScreen}/>
-          ) : (
-            <>
-            <GamesList cards={cards} openGameFullScreen={openGameFullScreen} tokensPresent={tokensPresent}/>
-            {logInActive && (
-              <LogInPopup
-                onOverlayClick={closeLogInHandler}
-                onRegistrationClick={showRegistrationHandler}
-                onForgotPasswordClick={showForgotPasswordHandler}
-                logInDone={logInDone}
-                setlogIn={setlogIn}
+          <Header onLoginClick={showLogInHandler} onFilterClick={showFilterHandler} />
+          <main className="main">
+            {gameFullScreen ? (
+              <GameFullScreen
+                closeGameFullScreen={closeGameFullScreen}
+                domain={domain}
+                selectedGameId={selectedGameId}
+                tokensPresent={tokensPresent}
               />
+            ) : (
+              <>
+                <GamesList
+                  cards={cards}
+                  openGameFullScreen={openGameFullScreen}
+                  tokensPresent={tokensPresent}
+                  domain={domain}
+                  onGameClick={handleGameClick}
+                />
+                {logInActive && (
+                  <LogInPopup
+                    domain={domain}
+                    onOverlayClick={closeLogInHandler}
+                    onRegistrationClick={showRegistrationHandler}
+                    onForgotPasswordClick={showForgotPasswordHandler}
+                    logInDone={logInDone}
+                    setlogIn={setlogIn}
+                  />
+                )}
+                {registrationActive && (
+                  <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandler} domain={domain} />
+                )}
+                {forgotPasswordActive && <ForgotPassword onOverlayClick={closeForgotPasswordHandler} />}
+                {filterActive && (
+                  <Filter
+                    onOverlayClick={closeFilterHandler}
+                    onRefreshFilterClick={refreshFilterHandler}
+                    onCloseFilterClick={closeFilterHandler}
+                  />
+                )}
+              </>
             )}
-            {registrationActive && (
-              <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandler} />
-            )}
-            {forgotPasswordActive && (
-              <ForgotPassword onOverlayClick={closeForgotPasswordHandler} />
-            )}
-            {filterActive && (
-              <Filter
-                onOverlayClick={closeFilterHandler}
-                onRefreshFilterClick={refreshFilterHandler}
-                onCloseFilterClick={closeFilterHandler}
-              />
-            )}
-            </>
-          )}
-        </main>
-        <Footer />
-      </>
+          </main>
+          <Footer />
+        </>
       )}
     </>
-  );
+  )
 }
