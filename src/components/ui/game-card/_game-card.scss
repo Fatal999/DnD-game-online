@@ -18,40 +18,22 @@
 }
 
 .main__games-images {
-  display: grid;
-  grid-template-columns: 244px 80px;
-  grid-template-rows: 80px 80px;
-  gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 8px;
-  margin-left: 8px;
+  margin-bottom: 8px;
   position: relative;
 }
 
-.main__games-images-first {
-  grid-column-start: 1;
-  grid-column-end: 1;
-  grid-row-start: 1;
-  grid-row-end: 2;
+.main__games-image {
+  margin: 10px;
 }
-
-.main__games-images-additional {
-  grid-column-start: 2;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 1;
-}
-
-// .main__games-images-third {
-//   grid-column-start: 2;
-//   grid-column-end: 2;
-//   grid-row-start: 2;
-//   grid-row-end: 2;
-// }
 
 .main__games-price {
   position: absolute;
   top: 8px;
-  left: 8px;
+  left: 8px; 
   width: 62px;
   min-height: 26px;
   background-color: #212b36;

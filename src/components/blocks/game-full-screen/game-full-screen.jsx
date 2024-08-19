@@ -1,18 +1,44 @@
 import { useState, useEffect } from "react"
-import SaveButton from "../../ui/button/save-button"
+import RegistrationPopup from "../../popups/registration/registration"
 import LogInPopup from "../../popups/log-in/log-in"
+import ForgotPassword from "../../popups/forgot-password/forgot-password"
 
-export default function GameFullScreen({ closeGameFullScreen, domain, selectedGameId, tokensPresent, onOverlayClick }) {
+export default function GameFullScreen({ closeGameFullScreen, domain, selectedGameId, tokensPresent }) {
   const [data, setData] = useState(null)
   const [logInActive, setLogInActive] = useState(false)
+  const [registrationActive, setRegistrationActive] = useState(false)
+  const [forgotPasswordActive, setForgotPasswordActive] = useState(false)
 
   function showLogInHandler() {
     setLogInActive(true)
-    console.log("Click")
+  }
+
+  function showLogInHandlerInternal() {
+    showLogInHandler()
+    setLogInActive(true)
+    setRegistrationActive(false)
   }
 
   function closeLogInHandler() {
     setLogInActive(false)
+  }
+
+  function showRegistrationHandler() {
+    setRegistrationActive(true)
+    setLogInActive(false)
+  }
+
+  function closeRegistrationHandler() {
+    setRegistrationActive(false)
+  }
+
+  function showForgotPasswordHandler() {
+    setForgotPasswordActive(true)
+    setLogInActive(false)
+  }
+
+  function closeForgotPasswordHandler() {
+    setForgotPasswordActive(false)
   }
 
   function handleLogout() {
@@ -118,8 +144,8 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
       {data ? (
         <div>
           <div>
-            {data.images.slice(0, 10).map((picture, id) => (
-              <img key={id} src={`${domain}${picture.image}`} width={id === 0 ? "244" : "80"} height={id === 0 ? "164" : "80"} alt="Pic." />
+            {data.images.map((picture, id) => (
+              <img className="main__games-image" key={id} src={`${domain}${picture.image}`} width="244" height="164" alt="Pic." />
             ))}
           </div>
           <div>
@@ -154,8 +180,24 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
               <p>Home rules</p>
               <span>{data.home_rules}</span>
               <button type="button">Read rules</button>
-              {!tokensPresent && <SaveButton onClick={showLogInHandler} />}
-              {tokensPresent && <SaveButton onClick={console.log("SAVE!!")} />}
+              {!tokensPresent && (
+                <button type="button" onClick={showLogInHandler}>
+                  Log In and Save
+                </button>
+              )}
+              {tokensPresent && <button type="button">Save</button>}
+              {logInActive && (
+                <LogInPopup
+                  domain={domain}
+                  onOverlayClick={closeLogInHandler}
+                  onRegistrationClick={showRegistrationHandler}
+                  onForgotPasswordClick={showForgotPasswordHandler}
+                />
+              )}
+              {registrationActive && (
+                <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandlerInternal} domain={domain} />
+              )}
+              {forgotPasswordActive && <ForgotPassword onOverlayClick={closeForgotPasswordHandler} />}
             </div>
             <div>
               <h2>Master</h2>
@@ -171,7 +213,6 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
       ) : (
         <p>Loading...</p>
       )}
-      {logInActive && <LogInPopup onOverlayClick={closeLogInHandler} />}
     </>
   )
 }

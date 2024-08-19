@@ -2,7 +2,7 @@ import { useState } from "react"
 import ErrorRegistration from "../../popups/error-registration/error-registration"
 import SuccessfulRegistration from "../successful-registration/succsessful-registration"
 
-export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick, setlogIn, domain }) {
+export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick, domain }) {
   const [isChecked, setIsChecked] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -64,7 +64,6 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
 
       if (response.ok) {
         console.log("Registration successful:", data)
-        setlogIn(true)
         showGoodLogIn()
         localStorage.clear()
         localStorage.setItem("refresh", JSON.stringify(data.refresh))

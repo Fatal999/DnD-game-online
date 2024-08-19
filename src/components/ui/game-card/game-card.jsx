@@ -13,15 +13,8 @@ export default function GameCard({
   return (
     <>
       <div className="main__games-images">
-        {pictures.slice(0, 10).map((picture, id) => (
-          <img
-            key={id}
-            className={`main__games-images-${id === 0 ? "first" : "additional"}`}
-            src={`${domain}${picture.image}`}
-            width={id === 0 ? "244" : "80"}
-            height={id === 0 ? "164" : "80"}
-            alt="Pic."
-          />
+        {pictures.map((picture, id) => (
+          <img key={id} className="main__games-image" src={`${domain}${picture.image}`} width="244" height="164" alt="Pic." />
         ))}
         <p className="main__games-price">{price}</p>
       </div>
