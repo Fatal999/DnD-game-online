@@ -1576,7 +1576,7 @@ body {
   cursor: pointer;
 }
 
-.error-registration {
+.error-popup {
   text-align: center;
   text-transform: uppercase;
   font-size: 24px;
@@ -1586,7 +1586,7 @@ body {
   background-color: red;
 }
 
-.succsessful-registration {
+.succsessful-popup {
   text-align: center;
   text-transform: uppercase;
   font-size: 24px;
@@ -1662,4 +1662,10 @@ body {
 
 .main__games-menu-toggler--active {
   border-bottom: 2px solid black;
+}
+
+.main__settings {
+  display: flex;
+  flex-direction: column;
+  width: 492px;
 }/*# sourceMappingURL=styles.css.map */

@@ -1,6 +1,6 @@
 import { useState } from "react"
-import SuccessfulRegistration from "../../popups/successful-registration/succsessful-registration"
-import ErrorRegistration from "../../popups/error-registration/error-registration"
+import ErrorPopup from "../error-popup/error-popup"
+import SuccessfulPopup from "../successful-popup/succsessful-popup"
 import Domain from "../../data/domain"
 
 export default function RegistrationPopup({ onOverlayClick, onLogInClick }) {
@@ -60,7 +60,6 @@ export default function RegistrationPopup({ onOverlayClick, onLogInClick }) {
 
       if (response.ok) {
         showGoodRegistration()
-        console.log("Registration successful:", data)
         localStorage.clear()
         localStorage.setItem("refresh", JSON.stringify(data.refresh))
         localStorage.setItem("access", JSON.stringify(data.access))
@@ -90,8 +89,8 @@ export default function RegistrationPopup({ onOverlayClick, onLogInClick }) {
         <button className="main__registration-google" type="button"></button>
         <form className="main__registration-form" onSubmit={handleClick}>
           <p className="main__registration-choose">Or with your E-mail</p>
-          {goodRegistration && <SuccessfulRegistration></SuccessfulRegistration>}
-          {badRegistration && <ErrorRegistration error={errorData}></ErrorRegistration>}
+          {goodRegistration && <SuccessfulPopup></SuccessfulPopup>}
+          {badRegistration && <ErrorPopup error={errorData}></ErrorPopup>}
           <input
             className="main__registration-username"
             type="text"

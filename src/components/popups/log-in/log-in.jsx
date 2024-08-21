@@ -1,6 +1,6 @@
 import { useState } from "react"
-import ErrorRegistration from "../../popups/error-registration/error-registration"
-import SuccessfulRegistration from "../successful-registration/succsessful-registration"
+import ErrorPopup from "../error-popup/error-popup"
+import SuccessfulPopup from "../successful-popup/succsessful-popup"
 import Domain from "../../data/domain"
 
 export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick }) {
@@ -64,7 +64,6 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
       const data = await response.json()
 
       if (response.ok) {
-        console.log("Log In successful:", data)
         showGoodLogIn()
         localStorage.clear()
         localStorage.setItem("refresh", JSON.stringify(data.refresh))
@@ -104,8 +103,8 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
             ></input>
             <button className="main__log-in-passwod-show" type="button" onClick={togglePasswordVisibility}></button>
           </div>
-          {badLogIn && <ErrorRegistration error={errorData}></ErrorRegistration>}
-          {goodLogIn && <SuccessfulRegistration></SuccessfulRegistration>}
+          {badLogIn && <ErrorPopup error={errorData}></ErrorPopup>}
+          {goodLogIn && <SuccessfulPopup></SuccessfulPopup>}
           <button className="main__log-in-forgot-passwod" type="button" onClick={onForgotPasswordClick}>
             Forgot password?
           </button>

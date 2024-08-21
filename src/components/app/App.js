@@ -31,11 +31,11 @@ function App() {
         <Routes>
           <Route path={Path.Home} element={<Home tokensPresent={tokensPresent}/>} />
 
-          <Route path={Path.Profile} element={<Profile tokensPresent={tokensPresent}/>} />
+          {tokensPresent && (<Route path={Path.Profile} element={<Profile tokensPresent={tokensPresent}/>} />)}
 
-          <Route path={Path.Games} element={<Games tokensPresent={tokensPresent}/>} />
+          {tokensPresent && (<Route path={Path.Games} element={<Games tokensPresent={tokensPresent}/>} />)}
 
-          <Route path={Path.Settings} element={<Settings tokensPresent={tokensPresent}/>} />
+          {tokensPresent && (<Route path={Path.Settings} element={<Settings tokensPresent={tokensPresent}/>} />)}
 
           <Route path="*" element={<NotFound />} />
         </Routes>

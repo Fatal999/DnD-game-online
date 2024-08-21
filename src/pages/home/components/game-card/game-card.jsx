@@ -1,4 +1,4 @@
-import Domain from "../../data/domain"
+import Domain from "../../../../components/data/domain"
 
 export default function GameCard({ title, price, startDate, gameSystems, accessibility, seatsLeft, userName, pictures, userAvatar }) {
   return (

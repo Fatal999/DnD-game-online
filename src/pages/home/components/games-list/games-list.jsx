@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import GameCard from "../../../../components/ui/game-card/game-card"
+import GameCard from "../game-card/game-card"
 import Domain from "../../../../components/data/domain"
 
 export default function GamesList({ openGameFullScreen, tokensPresent, onGameClick }) {
@@ -18,7 +18,6 @@ export default function GamesList({ openGameFullScreen, tokensPresent, onGameCli
 
       if (response.ok) {
         setCards(cards)
-        console.log(cards)
       } else {
         console.log("Nope:", cards)
       }

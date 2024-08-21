@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import RegistrationPopup from "../../popups/registration/registration"
 import LogInPopup from "../../popups/log-in/log-in"
 import ForgotPassword from "../../popups/forgot-password/forgot-password"
 import Filter from "../../popups/filter/filter"
 import ProfilePopup from "../../popups/profile-popup/profile-popup"
-import Domain from "../../data/domain"
+import GetUserData from "../../utils/get-user-data"
 
 export default function Header({ tokensPresent, gameFullScreen }) {
   const [logInActive, setLogInActive] = useState(false)
@@ -12,7 +12,6 @@ export default function Header({ tokensPresent, gameFullScreen }) {
   const [forgotPasswordActive, setForgotPasswordActive] = useState(false)
   const [openProfileActive, setOpenProfile] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
-  const [data, setData] = useState(null)
 
   function showFilterHandler() {
     setFilterActive(true)
@@ -67,76 +66,7 @@ export default function Header({ tokensPresent, gameFullScreen }) {
     setForgotPasswordActive(false)
   }
 
-  function handleLogout() {
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    window.location.reload()
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
-  useEffect(() => {
-    if (tokensPresent) {
-      async function fetchData() {
-        let token = localStorage.getItem("access")
-
-        let response = await fetch(`${Domain}api/account/settings/`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          }
-        })
-
-        let data = await response.json()
-
-        if (response.ok) {
-          setData(data)
-          console.log("Yep:", data)
-        } else {
-          console.log("Nope:", data)
-          if (response.status === 401) {
-            const refreshToken = JSON.parse(localStorage.getItem("refresh"))
-
-            const refreshResponse = await fetch(`${Domain}api/token/refresh/`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({ refresh: refreshToken })
-            })
-
-            if (refreshResponse.ok) {
-              const refreshData = await refreshResponse.json()
-              localStorage.setItem("access", refreshData.access)
-
-              token = refreshData.access
-              response = await fetch(`${Domain}api/account/settings/`, {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  "Authorization": `Bearer ${token}`
-                }
-              })
-
-              data = await response.json()
-
-              if (response.ok) {
-                console.log("Yep after refresh:", data)
-                setData(data)
-              } else {
-                console.log("Nope after refresh:", data)
-                handleLogout()
-              }
-            } else {
-              handleLogout()
-            }
-          }
-        }
-      }
-
-      fetchData()
-    }
-  }, [tokensPresent])
+  const { data } = GetUserData()
 
   return (
     <nav className="header">
