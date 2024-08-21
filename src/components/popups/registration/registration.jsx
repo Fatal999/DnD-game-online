@@ -1,8 +1,9 @@
 import { useState } from "react"
 import SuccessfulRegistration from "../../popups/successful-registration/succsessful-registration"
 import ErrorRegistration from "../../popups/error-registration/error-registration"
+import Domain from "../../data/domain"
 
-export default function RegistrationPopup({ onOverlayClick, onLogInClick, domain }) {
+export default function RegistrationPopup({ onOverlayClick, onLogInClick }) {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -47,7 +48,7 @@ export default function RegistrationPopup({ onOverlayClick, onLogInClick, domain
     evt.preventDefault()
 
     try {
-      const response = await fetch(`${domain}api/register/`, {
+      const response = await fetch(`${Domain}api/register/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -60,10 +61,10 @@ export default function RegistrationPopup({ onOverlayClick, onLogInClick, domain
       if (response.ok) {
         showGoodRegistration()
         console.log("Registration successful:", data)
-
         localStorage.clear()
         localStorage.setItem("refresh", JSON.stringify(data.refresh))
         localStorage.setItem("access", JSON.stringify(data.access))
+        window.location.reload()
       } else {
         setErrorData(data.errors[0])
         showBadRegistration()

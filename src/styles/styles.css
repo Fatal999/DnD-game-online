@@ -197,10 +197,14 @@ body {
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  background-image: url(../../src/assets/unknown-avatar.svg);
-  background-repeat: no-repeat;
-  background-position: 8px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #212b36;
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 18px;
 }
 @media (min-width: 1440px) {
   .header__user-log-in {
@@ -1592,48 +1596,6 @@ body {
   background-color: green;
 }
 
-.main__log-in-user-menu {
-  display: flex;
-  justify-content: space-between;
-  width: 243px;
-  min-height: 46px;
-  margin: 0 auto;
-  margin-bottom: 16px;
-  margin-top: 20px;
-  padding-left: 60px;
-  padding-right: 60px;
-  box-sizing: border-box;
-}
-@media (min-width: 1440px) {
-  .main__log-in-user-menu {
-    margin-bottom: 0;
-  }
-}
-
-.main__log-in-user-menu-toggler {
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 22px;
-  width: 48px;
-  min-height: 48px;
-  background-color: #f3f3f3;
-  border: none;
-  cursor: pointer;
-}
-
-.main__log-in-user-menu-toggler--disabled {
-  color: #637381;
-}
-
-.main__log-in-user-menu-toggler--active {
-  border-bottom: 2px solid black;
-}
-
 .main__profile {
   position: fixed;
   inset: 0;
@@ -1658,4 +1620,46 @@ body {
   .main__profile-wrapper {
     right: 270px;
   }
+}
+
+.main__games-menu {
+  display: flex;
+  justify-content: space-between;
+  width: 243px;
+  min-height: 46px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  margin-top: 20px;
+  padding-left: 60px;
+  padding-right: 60px;
+  box-sizing: border-box;
+}
+@media (min-width: 1440px) {
+  .main__games-menu {
+    margin-bottom: 40px;
+  }
+}
+
+.main__games-menu-toggler {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  width: 48px;
+  min-height: 48px;
+  background-color: #f3f3f3;
+  border: none;
+  cursor: pointer;
+}
+
+.main__games-menu-toggler--disabled {
+  color: #637381;
+}
+
+.main__games-menu-toggler--active {
+  border-bottom: 2px solid black;
 }/*# sourceMappingURL=styles.css.map */

@@ -1,8 +1,9 @@
 import { useState } from "react"
 import ErrorRegistration from "../../popups/error-registration/error-registration"
 import SuccessfulRegistration from "../successful-registration/succsessful-registration"
+import Domain from "../../data/domain"
 
-export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick, domain }) {
+export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForgotPasswordClick }) {
   const [isChecked, setIsChecked] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -52,7 +53,7 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
     evt.preventDefault()
 
     try {
-      const response = await fetch(`${domain}api/login/`, {
+      const response = await fetch(`${Domain}api/login/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -63,14 +64,14 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
       const data = await response.json()
 
       if (response.ok) {
-        console.log("Registration successful:", data)
+        console.log("Log In successful:", data)
         showGoodLogIn()
         localStorage.clear()
         localStorage.setItem("refresh", JSON.stringify(data.refresh))
         localStorage.setItem("access", JSON.stringify(data.access))
         window.location.reload()
       } else {
-        console.error("Registration failed:", data)
+        console.error("Log In failed:", data)
         setErrorData(data.errors[0])
         showBadLogIn()
       }

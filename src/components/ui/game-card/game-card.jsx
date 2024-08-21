@@ -1,20 +1,11 @@
-export default function GameCard({
-  title,
-  price,
-  startDate,
-  gameSystems,
-  accessibility,
-  seatsLeft,
-  userName,
-  pictures,
-  userAvatar,
-  domain
-}) {
+import Domain from "../../data/domain"
+
+export default function GameCard({ title, price, startDate, gameSystems, accessibility, seatsLeft, userName, pictures, userAvatar }) {
   return (
     <>
       <div className="main__games-images">
         {pictures.map((picture, id) => (
-          <img key={id} className="main__games-image" src={`${domain}${picture.image}`} width="244" height="164" alt="Pic." />
+          <img key={id} className="main__games-image" src={`${Domain}${picture.image}`} width="244" height="164" alt="Pic." />
         ))}
         <p className="main__games-price">{price}</p>
       </div>
@@ -34,7 +25,7 @@ export default function GameCard({
       </div>
       <div className="main__master">
         <label className="main__master-label">Master:</label>
-        <p className="main__master-name" style={{ backgroundImage: `url(${domain}${userAvatar})` }}>
+        <p className="main__master-name" style={{ backgroundImage: `url(${Domain}${userAvatar})` }}>
           {userName}
         </p>
       </div>

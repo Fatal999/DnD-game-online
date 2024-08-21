@@ -1,4 +1,4 @@
-.main__log-in-user-menu {
+.main__games-menu {
     display: flex;
     justify-content: space-between;
     width: 243px;
@@ -11,11 +11,11 @@
     box-sizing: border-box;
   
     @media (min-width: 1440px) {
-      margin-bottom: 0;
+      margin-bottom: 40px;
     }
   }
   
-  .main__log-in-user-menu-toggler {
+  .main__games-menu-toggler {
     padding: 0;
     display: flex;
     justify-content: center;
@@ -31,11 +31,11 @@
     cursor: pointer;
   }
   
-  .main__log-in-user-menu-toggler--disabled {
+  .main__games-menu-toggler--disabled {
     color: #637381;
   }
   
-  .main__log-in-user-menu-toggler--active {
+  .main__games-menu-toggler--active {
     border-bottom: 2px solid black;
   }
   

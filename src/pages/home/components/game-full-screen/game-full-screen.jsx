@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react"
-import RegistrationPopup from "../../popups/registration/registration"
-import LogInPopup from "../../popups/log-in/log-in"
-import ForgotPassword from "../../popups/forgot-password/forgot-password"
+import RegistrationPopup from "../../../../components/popups/registration/registration"
+import LogInPopup from "../../../../components/popups/log-in/log-in"
+import ForgotPassword from "../../../../components/popups/forgot-password/forgot-password"
+import Domain from "../../../../components/data/domain"
 
-export default function GameFullScreen({ closeGameFullScreen, domain, selectedGameId, tokensPresent }) {
+export default function GameFullScreen({ closeGameFullScreen, selectedGameId, tokensPresent }) {
   const [data, setData] = useState(null)
   const [logInActive, setLogInActive] = useState(false)
   const [registrationActive, setRegistrationActive] = useState(false)
@@ -45,6 +46,7 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
     localStorage.removeItem("access")
     localStorage.removeItem("refresh")
     window.location.reload()
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
       async function fetchData() {
         let token = localStorage.getItem("access")
 
-        let response = await fetch(`${domain}api/game/${selectedGameId}/`, {
+        let response = await fetch(`${Domain}api/game/${selectedGameId}/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -70,7 +72,7 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
           if (response.status === 401) {
             const refreshToken = JSON.parse(localStorage.getItem("refresh"))
 
-            const refreshResponse = await fetch(`${domain}api/token/refresh/`, {
+            const refreshResponse = await fetch(`${Domain}api/token/refresh/`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -83,7 +85,7 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
               localStorage.setItem("access", refreshData.access)
 
               token = refreshData.access
-              response = await fetch(`${domain}api/game/${selectedGameId}/`, {
+              response = await fetch(`${Domain}api/game/${selectedGameId}/`, {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -110,7 +112,7 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
       fetchData()
     } else {
       async function fetchData() {
-        let response = await fetch(`${domain}api/game/${selectedGameId}/`, {
+        let response = await fetch(`${Domain}api/game/${selectedGameId}/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
@@ -129,7 +131,7 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
 
       fetchData()
     }
-  }, [domain, selectedGameId, tokensPresent])
+  }, [selectedGameId, tokensPresent])
 
   return (
     <>
@@ -145,7 +147,7 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
         <div>
           <div>
             {data.images.map((picture, id) => (
-              <img className="main__games-image" key={id} src={`${domain}${picture.image}`} width="244" height="164" alt="Pic." />
+              <img className="main__games-image" key={id} src={`${Domain}${picture.image}`} width="244" height="164" alt="Pic." />
             ))}
           </div>
           <div>
@@ -188,20 +190,19 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
               {tokensPresent && <button type="button">Save</button>}
               {logInActive && (
                 <LogInPopup
-                  domain={domain}
                   onOverlayClick={closeLogInHandler}
                   onRegistrationClick={showRegistrationHandler}
                   onForgotPasswordClick={showForgotPasswordHandler}
                 />
               )}
               {registrationActive && (
-                <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandlerInternal} domain={domain} />
+                <RegistrationPopup onOverlayClick={closeRegistrationHandler} onLogInClick={showLogInHandlerInternal} />
               )}
               {forgotPasswordActive && <ForgotPassword onOverlayClick={closeForgotPasswordHandler} />}
             </div>
             <div>
               <h2>Master</h2>
-              <p className="main__master-name" style={{ backgroundImage: `url(${domain}${data.user.avatar})` }}>
+              <p className="main__master-name" style={{ backgroundImage: `url(${Domain}${data.user.avatar})` }}>
                 {data.user.display_name}
               </p>
               <div>
@@ -211,7 +212,7 @@ export default function GameFullScreen({ closeGameFullScreen, domain, selectedGa
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <div>Loading...</div>
       )}
     </>
   )

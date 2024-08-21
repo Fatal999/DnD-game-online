@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react"
-import GameCard from "../../ui/game-card/game-card"
+import GameCard from "../../../../components/ui/game-card/game-card"
+import Domain from "../../../../components/data/domain"
 
-export default function GamesList({ openGameFullScreen, tokensPresent, domain, onGameClick }) {
+export default function GamesList({ openGameFullScreen, tokensPresent, onGameClick }) {
   const [cards, setCards] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${domain}api/game/all/`, {
+      const response = await fetch(`${Domain}api/game/all/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -23,7 +24,7 @@ export default function GamesList({ openGameFullScreen, tokensPresent, domain, o
       }
     }
     fetchData()
-  }, [domain])
+  }, [])
 
   function handleGameClick(gameId) {
     onGameClick(gameId)
@@ -41,7 +42,6 @@ export default function GamesList({ openGameFullScreen, tokensPresent, domain, o
           cards.games.map((game) => (
             <li className="main__games-item" key={game.id} onClick={() => handleGameClick(game.id)}>
               <GameCard
-                domain={domain}
                 title={game.title}
                 description={game.description}
                 startDate={game.start_date}
@@ -56,7 +56,7 @@ export default function GamesList({ openGameFullScreen, tokensPresent, domain, o
             </li>
           ))
         ) : (
-          <p>Loading games...</p>
+          <div>Loading...</div>
         )}
       </ul>
       {tokensPresent ? (
