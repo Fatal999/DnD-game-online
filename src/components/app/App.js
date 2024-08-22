@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { HelmetProvider } from 'react-helmet-async'
 import Home from "../../pages/home/home.jsx"
 import Games from "../../pages/games/games.jsx"
 import Profile from "../../pages/profile/profile.jsx"
-import NotFound from "../../pages/not-found/not-found.jsx"
+// import NotFound from "../../pages/not-found/not-found.jsx"
 import Settings from "../../pages/settings/settings.jsx"
 import ScrollToTop from "../utils/scroll-to-top.jsx"
 import Path from "../data/path.jsx"
@@ -37,7 +37,9 @@ function App() {
 
           {tokensPresent && (<Route path={Path.Settings} element={<Settings tokensPresent={tokensPresent}/>} />)}
 
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Navigate to={Path.Home} />} />
+
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

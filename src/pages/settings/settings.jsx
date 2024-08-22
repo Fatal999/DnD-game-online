@@ -5,6 +5,7 @@ import Footer from "../../components/layout/footer/footer"
 import Domain from "../../components/data/domain"
 import ErrorPopup from "../../components/popups/error-popup/error-popup"
 import SuccessfulPopup from "../../components/popups/successful-popup/succsessful-popup"
+import ChangingPassword from "../../components/popups/changing-password/changing-password"
 import { Helmet } from "react-helmet-async"
 
 export default function Settings({ tokensPresent }) {
@@ -15,6 +16,15 @@ export default function Settings({ tokensPresent }) {
   const [errorData, setErrorData] = useState(null)
   const [goodRequest, setGoodRequest] = useState(false)
   const [badRequest, setBadRequest] = useState(false)
+  const [changePasswordPopup, setChangePasswordPopup] = useState(false)
+
+  function openChangePasswordPopup() {
+    setChangePasswordPopup(true)
+  }
+
+  function onOverlayClick() {
+    setChangePasswordPopup(false)
+  }
 
   function showGoodPoup() {
     setGoodRequest(true)
@@ -145,7 +155,9 @@ export default function Settings({ tokensPresent }) {
               {goodRequest && <SuccessfulPopup></SuccessfulPopup>}
               <button type="submit">Save</button>
               <span>Password</span>
-              <button type="button">Change</button>
+              <button type="button" onClick={openChangePasswordPopup}>
+                Change
+              </button>
               <div>
                 <label>Log in with Google</label>
                 <span>Disconnect</span>
@@ -161,6 +173,7 @@ export default function Settings({ tokensPresent }) {
           )}
         </form>
       </Main>
+      {changePasswordPopup && <ChangingPassword onOverlayClick={onOverlayClick} />}
       <Footer />
     </>
   )

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useLocation } from "react-router-dom"
 import RegistrationPopup from "../../popups/registration/registration"
 import LogInPopup from "../../popups/log-in/log-in"
 import ForgotPassword from "../../popups/forgot-password/forgot-password"
@@ -12,6 +13,8 @@ export default function Header({ tokensPresent, gameFullScreen }) {
   const [forgotPasswordActive, setForgotPasswordActive] = useState(false)
   const [openProfileActive, setOpenProfile] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
+
+  const location = useLocation() // Получаем текущий роут
 
   function showFilterHandler() {
     setFilterActive(true)
@@ -68,12 +71,15 @@ export default function Header({ tokensPresent, gameFullScreen }) {
 
   const { data } = GetUserData()
 
+  // Проверяем, находимся ли мы на странице Home
+  const isHomeRoute = location.pathname === "/home" || location.pathname === "/"
+
   return (
     <nav className="header">
       <button className="header__eye" type="button"></button>
       <input className="header__input" type="text" placeholder="Search for parties, masters & players" action="#" method="submit"></input>
-      {gameFullScreen ? (
-        <button className="header__filter" type="button"></button>
+      {gameFullScreen || !isHomeRoute ? (
+        <button className="header__filter" type="button" disabled></button> // Кнопка заблокирована на всех роутах кроме home
       ) : (
         <button className="header__filter" type="button" onClick={showFilterHandler}></button>
       )}
