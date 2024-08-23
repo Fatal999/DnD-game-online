@@ -6,6 +6,7 @@ import Domain from "../../components/data/domain"
 import ErrorPopup from "../../components/popups/error-popup/error-popup"
 import SuccessfulPopup from "../../components/popups/successful-popup/succsessful-popup"
 import ChangingPassword from "../../components/popups/changing-password/changing-password"
+import CreateGameButton from "../../components/ui/create-game-button/create-game-button"
 import { Helmet } from "react-helmet-async"
 
 export default function Settings({ tokensPresent }) {
@@ -147,26 +148,26 @@ export default function Settings({ tokensPresent }) {
         <form onSubmit={handleSubmit}>
           {info ? (
             <div className="main__settings">
-              <span>Username</span>
+              <h3>Username</h3>
               <input type="text" value={username} onChange={(el) => setUsername(el.target.value)} />
-              <span>Email</span>
+              <h3>Email</h3>
               <input type="email" value={email} onChange={(el) => setEmail(el.target.value)} />
               {badRequest && <ErrorPopup error={errorData}></ErrorPopup>}
               {goodRequest && <SuccessfulPopup></SuccessfulPopup>}
               <button type="submit">Save</button>
-              <span>Password</span>
+              <h3>Password</h3>
               <button type="button" onClick={openChangePasswordPopup}>
                 Change
               </button>
               <div>
-                <label>Log in with Google</label>
+                <h3>Log in with Google</h3>
                 <span>Disconnect</span>
               </div>
               <div>
-                <label>Discord Account</label>
+                <h3>Discord Account</h3>
                 <span>Disconnect</span>
               </div>
-              <button type="button">+</button>
+              <CreateGameButton />
             </div>
           ) : (
             <div>Loading...</div>

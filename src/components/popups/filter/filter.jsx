@@ -16,7 +16,7 @@ export default function Filter({ onOverlayClick, onRefreshFilterClick, onCloseFi
           <button className="main__filter-button main__filter-button--refresh" type="button" onClick={onRefreshFilterClick}></button>
           <button className="main__filter-button main__filter-button--close" type="button" onClick={onCloseFilterClick}></button>
         </div>
-        <form action="https://echo.htmlacademy.ru/" method="get">
+        <form>
           <div className="main__filter-options">
             <h2 className="main__filter-accessibility">Accessibility</h2>
             <ul className="main__filter-accessibility-list">

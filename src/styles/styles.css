@@ -328,31 +328,6 @@ body {
   }
 }
 
-.main__games-button {
-  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 24px;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  background-color: #212b36;
-  cursor: pointer;
-  margin-left: 279px;
-  margin-bottom: 40px;
-  border: none;
-  padding: 0;
-}
-@media (min-width: 1440px) {
-  .main__games-button {
-    margin-left: 1165px;
-  }
-}
-
 .main__users {
   display: flex;
   flex-direction: column;
@@ -1670,4 +1645,29 @@ body {
   display: flex;
   flex-direction: column;
   width: 492px;
+}
+
+.main__create-game-button {
+  font-family: "PublicSans", "Arial", "Helvetica", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background-color: #212b36;
+  cursor: pointer;
+  margin-left: 279px;
+  margin-bottom: 40px;
+  border: none;
+  padding: 0;
+}
+@media (min-width: 1440px) {
+  .main__create-game-button {
+    margin-left: 1165px;
+  }
 }/*# sourceMappingURL=styles.css.map */

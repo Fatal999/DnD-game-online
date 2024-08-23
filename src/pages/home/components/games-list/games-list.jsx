@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import GameCard from "../game-card/game-card"
 import Domain from "../../../../components/data/domain"
+import CreateGameButton from "../../../../components/ui/create-game-button/create-game-button"
 
 export default function GamesList({ openGameFullScreen, tokensPresent, onGameClick }) {
   const [cards, setCards] = useState(null)
@@ -58,13 +59,7 @@ export default function GamesList({ openGameFullScreen, tokensPresent, onGameCli
           <div>Loading...</div>
         )}
       </ul>
-      {tokensPresent ? (
-        <button className="main__games-button" type="button">
-          +
-        </button>
-      ) : (
-        <></>
-      )}
+      {tokensPresent ? <CreateGameButton /> : <></>}
     </div>
   )
 }

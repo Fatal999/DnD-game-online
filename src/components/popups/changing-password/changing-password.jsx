@@ -41,8 +41,6 @@ export default function ChangingPassword({ onOverlayClick }) {
       if (response.ok) {
         console.error("PW changed:", data)
         showGoodChangePassword()
-        localStorage.removeItem("access")
-        localStorage.removeItem("refresh")
         window.location.reload()
       } else {
         console.error("PW failed:", data)

@@ -137,9 +137,8 @@ export default function GameFullScreen({ closeGameFullScreen, selectedGameId, to
     <>
       <div>
         <button type="button" onClick={closeGameFullScreen}>
-          Close
+          &#8249; Games
         </button>
-        <p>Games</p>
         {tokensPresent && <button type="button">Like</button>}
         <button type="button">Share</button>
       </div>
@@ -158,28 +157,28 @@ export default function GameFullScreen({ closeGameFullScreen, selectedGameId, to
           <div>
             <div>
               <h2>General</h2>
-              <p>Game Systems</p>
+              <h3>Game Systems</h3>
               <span>{data.game_systems}</span>
-              <p>Platform (VTT)</p>
+              <h3>Platform (VTT)</h3>
               <span>{data.platform}</span>
-              <p>Game Genres & Settings</p>
+              <h3>Game Genres & Settings</h3>
               <span>{data.genres_settings}</span>
               <h2>Description</h2>
               <p>{data.description}</p>
             </div>
             <div>
               <h2>Information</h2>
-              <p>Accessibility</p>
+              <h3>Accessibility</h3>
               <span>{data.accessibility}</span>
-              <p>Location</p>
+              <h3>Location</h3>
               <span>{data.location}</span>
-              <p>Game format</p>
+              <h3>Game format</h3>
               <span>{data.game_format}</span>
-              <p>Start date</p>
+              <h3>Start date</h3>
               <span>{data.start_date}</span>
-              <p>Language</p>
+              <h3>Language</h3>
               <span>{data.language}</span>
-              <p>Home rules</p>
+              <h3>Home rules</h3>
               <span>{data.home_rules}</span>
               <button type="button">Read rules</button>
               {!tokensPresent && (

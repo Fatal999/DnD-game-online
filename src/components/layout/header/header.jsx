@@ -14,7 +14,7 @@ export default function Header({ tokensPresent, gameFullScreen }) {
   const [openProfileActive, setOpenProfile] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
 
-  const location = useLocation() // Получаем текущий роут
+  const location = useLocation()
 
   function showFilterHandler() {
     setFilterActive(true)
@@ -71,7 +71,6 @@ export default function Header({ tokensPresent, gameFullScreen }) {
 
   const { data } = GetUserData()
 
-  // Проверяем, находимся ли мы на странице Home
   const isHomeRoute = location.pathname === "/home" || location.pathname === "/"
 
   return (
@@ -79,7 +78,7 @@ export default function Header({ tokensPresent, gameFullScreen }) {
       <button className="header__eye" type="button"></button>
       <input className="header__input" type="text" placeholder="Search for parties, masters & players" action="#" method="submit"></input>
       {gameFullScreen || !isHomeRoute ? (
-        <button className="header__filter" type="button" disabled></button> // Кнопка заблокирована на всех роутах кроме home
+        <button className="header__filter" type="button" disabled></button>
       ) : (
         <button className="header__filter" type="button" onClick={showFilterHandler}></button>
       )}
