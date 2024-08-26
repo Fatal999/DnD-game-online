@@ -1,16 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import Path from "../../data/path"
 import GetUserData from "../../../components/utils/get-user-data"
+import HandleLogOut from "../../utils/handle-log-out"
 
 export default function ProfilePopup({ onOverlayClick }) {
   const { data } = GetUserData()
-
-  function handleLogout() {
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    window.location.reload()
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
 
   const navigate = useNavigate()
 
@@ -59,7 +53,7 @@ export default function ProfilePopup({ onOverlayClick }) {
               </button>
             </li>
             <li>
-              <button type="button" onClick={handleLogout}>
+              <button type="button" onClick={HandleLogOut}>
                 Log Out
               </button>
             </li>

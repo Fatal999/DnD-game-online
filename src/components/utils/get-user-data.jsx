@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import Domain from "../../components/data/domain"
+import HandleLogOut from "./handle-log-out"
 
 export default function GetUserData() {
   const [data, setData] = useState(null)
@@ -19,9 +20,10 @@ export default function GetUserData() {
       let data = await response.json()
 
       if (response.ok) {
+        console.log("Yep before refresh:", data)
         setData(data)
       } else {
-        console.log("Nope:", data)
+        console.log("Nope before refresh:", data)
         if (response.status === 401) {
           const refreshToken = JSON.parse(localStorage.getItem("refresh"))
 
@@ -50,12 +52,11 @@ export default function GetUserData() {
 
             if (response.ok) {
               setData(data)
+              console.log("Yep after refresh:", data)
             } else {
               console.log("Nope after refresh:", data)
-              handleLogout()
+              HandleLogOut()
             }
-          } else {
-            // handleLogout()
           }
         }
       }
@@ -64,12 +65,5 @@ export default function GetUserData() {
     fetchData()
   }, [])
 
-  function handleLogout() {
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    window.location.reload()
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
-  return { data, handleLogout }
+  return { data, HandleLogOut }
 }

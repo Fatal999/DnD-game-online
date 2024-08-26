@@ -37,14 +37,12 @@ export default function CreateGame({ tokensPresent }) {
             <h2>Description</h2>
             <input type="text" placeholder="Describe your adventure..."></input>
             <h2>Images</h2>
-            <form>
-              <input type="file"></input>
-              <div>???</div>
-              <div>
-                <button type="button">Remove All</button>
-                <button type="submit">Upload</button>
-              </div>
-            </form>
+            <input type="file"></input>
+            <div>???</div>
+            <div>
+              <button type="button">Remove All</button>
+              <button type="submit">Upload</button>
+            </div>
           </div>
           <div>
             <h1>General</h1>

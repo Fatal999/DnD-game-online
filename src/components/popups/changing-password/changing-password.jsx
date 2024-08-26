@@ -2,6 +2,7 @@ import Domain from "../../data/domain"
 import { useState } from "react"
 import SuccessfulPopup from "../../popups/successful-popup/succsessful-popup"
 import ErrorPopup from "../../popups/error-popup/error-popup"
+import HandleLogOut from "../../utils/handle-log-out"
 
 export default function ChangingPassword({ onOverlayClick }) {
   const [errorData, setErrorData] = useState(null)
@@ -44,8 +45,6 @@ export default function ChangingPassword({ onOverlayClick }) {
         window.location.reload()
       } else {
         console.error("PW failed:", data)
-        console.log(formData)
-
         setErrorData(data.errors[0])
         showBadChangePassword()
 
@@ -77,12 +76,11 @@ export default function ChangingPassword({ onOverlayClick }) {
 
             if (response.ok) {
               setFormData(data)
+              console.log("Yep after refresh:", data)
             } else {
               console.log("Nope after refresh:", data)
-              // handleLogout()
+              HandleLogOut()
             }
-          } else {
-            // handleLogout()
           }
         }
       }

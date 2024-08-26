@@ -7,6 +7,7 @@ import ErrorPopup from "../../components/popups/error-popup/error-popup"
 import SuccessfulPopup from "../../components/popups/successful-popup/succsessful-popup"
 import ChangingPassword from "../../components/popups/changing-password/changing-password"
 import CreateGameButton from "../../components/ui/create-game-button/create-game-button"
+import HandleLogOut from "../../components/utils/handle-log-out"
 import { Helmet } from "react-helmet-async"
 
 export default function Settings({ tokensPresent }) {
@@ -35,13 +36,6 @@ export default function Settings({ tokensPresent }) {
     setBadRequest(true)
   }
 
-  function handleLogout() {
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    window.location.reload()
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
   useEffect(() => {
     async function fetchData() {
       let token = localStorage.getItem("access")
@@ -60,8 +54,9 @@ export default function Settings({ tokensPresent }) {
         setInfo(info)
         setUsername(info.username)
         setEmail(info.email)
+        console.log("Yep before refresh:", info)
       } else {
-        console.log("Nope:", info)
+        console.log("Nope before refresh:", info)
         if (response.status === 401) {
           const refreshToken = JSON.parse(localStorage.getItem("refresh"))
 
@@ -92,12 +87,11 @@ export default function Settings({ tokensPresent }) {
               setInfo(info)
               setUsername(info.username)
               setEmail(info.email)
+              console.log("Yep after refresh:", info)
             } else {
               console.log("Nope after refresh:", info)
-              handleLogout()
+              HandleLogOut()
             }
-          } else {
-            handleLogout()
           }
         }
       }

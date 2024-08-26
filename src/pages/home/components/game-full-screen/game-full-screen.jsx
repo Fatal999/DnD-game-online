@@ -3,6 +3,7 @@ import RegistrationPopup from "../../../../components/popups/registration/regist
 import LogInPopup from "../../../../components/popups/log-in/log-in"
 import ForgotPassword from "../../../../components/popups/forgot-password/forgot-password"
 import Domain from "../../../../components/data/domain"
+import HandleLogOut from "../../../../components/utils/handle-log-out"
 
 export default function GameFullScreen({ closeGameFullScreen, selectedGameId, tokensPresent }) {
   const [data, setData] = useState(null)
@@ -40,13 +41,6 @@ export default function GameFullScreen({ closeGameFullScreen, selectedGameId, to
 
   function closeForgotPasswordHandler() {
     setForgotPasswordActive(false)
-  }
-
-  function handleLogout() {
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    window.location.reload()
-    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   useEffect(() => {
@@ -100,10 +94,8 @@ export default function GameFullScreen({ closeGameFullScreen, selectedGameId, to
                 console.log("Yep after refresh:", data)
               } else {
                 console.log("Nope after refresh:", data)
-                handleLogout()
+                HandleLogOut()
               }
-            } else {
-              handleLogout()
             }
           }
         }
