@@ -92,6 +92,8 @@ export default function Settings({ tokensPresent }) {
               console.log("Nope after refresh:", info)
               HandleLogOut()
             }
+          } else {
+            HandleLogOut()
           }
         }
       }

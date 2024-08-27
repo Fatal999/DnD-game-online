@@ -96,6 +96,8 @@ export default function GameFullScreen({ closeGameFullScreen, selectedGameId, to
                 console.log("Nope after refresh:", data)
                 HandleLogOut()
               }
+            } else {
+              HandleLogOut()
             }
           }
         }

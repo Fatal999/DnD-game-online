@@ -21,6 +21,7 @@ export default function GamesList({ openGameFullScreen, tokensPresent, onGameCli
         setCards(cards)
       } else {
         console.log("Nope:", cards)
+        return
       }
     }
     fetchData()

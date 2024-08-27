@@ -64,6 +64,7 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
       const data = await response.json()
 
       if (response.ok) {
+        console.error("Log In zbs:", data)
         showGoodLogIn()
         localStorage.clear()
         localStorage.setItem("refresh", JSON.stringify(data.refresh))

@@ -81,6 +81,8 @@ export default function ChangingPassword({ onOverlayClick }) {
               console.log("Nope after refresh:", data)
               HandleLogOut()
             }
+          } else {
+            HandleLogOut()
           }
         }
       }

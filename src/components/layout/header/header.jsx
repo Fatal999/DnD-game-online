@@ -1,11 +1,12 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import RegistrationPopup from "../../popups/registration/registration"
 import LogInPopup from "../../popups/log-in/log-in"
 import ForgotPassword from "../../popups/forgot-password/forgot-password"
 import Filter from "../../popups/filter/filter"
 import ProfilePopup from "../../popups/profile-popup/profile-popup"
-import GetUserData from "../../utils/get-user-data"
+import Domain from "../../data/domain"
+import HandleLogOut from "../../utils/handle-log-out"
 
 export default function Header({ tokensPresent, gameFullScreen }) {
   const [logInActive, setLogInActive] = useState(false)
@@ -13,6 +14,7 @@ export default function Header({ tokensPresent, gameFullScreen }) {
   const [forgotPasswordActive, setForgotPasswordActive] = useState(false)
   const [openProfileActive, setOpenProfile] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
+  const [data, setData] = useState(null)
 
   const location = useLocation()
 
@@ -69,9 +71,71 @@ export default function Header({ tokensPresent, gameFullScreen }) {
     setForgotPasswordActive(false)
   }
 
-  const { data } = GetUserData()
-
   const isHomeRoute = location.pathname === "/home" || location.pathname === "/"
+
+  useEffect(() => {
+    if (tokensPresent) {
+      async function fetchData() {
+        let token = localStorage.getItem("access")
+
+        let response = await fetch(`${Domain}api/account/settings/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          }
+        })
+
+        let data = await response.json()
+
+        if (response.ok) {
+          setData(data)
+          console.log("Yep with token:", data)
+        } else {
+          console.log("Nope with token:", data)
+          if (response.status === 401) {
+            const refreshToken = JSON.parse(localStorage.getItem("refresh"))
+
+            const refreshResponse = await fetch(`${Domain}api/token/refresh/`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ refresh: refreshToken })
+            })
+
+            if (refreshResponse.ok) {
+              const refreshData = await refreshResponse.json()
+              localStorage.setItem("access", refreshData.access)
+
+              token = refreshData.access
+              response = await fetch(`${Domain}api/account/settings/`, {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": `Bearer ${token}`
+                }
+              })
+
+              data = await response.json()
+
+              if (response.ok) {
+                setData(data)
+                console.log("Yep after refresh:", data)
+              } else {
+                console.log("Nope after refresh:", data)
+                HandleLogOut()
+              }
+            } else {
+              HandleLogOut()
+            }
+          }
+        }
+      }
+
+      fetchData()
+    }
+  }, [tokensPresent])
 
   return (
     <nav className="header">
@@ -108,7 +172,7 @@ export default function Header({ tokensPresent, gameFullScreen }) {
       {filterActive && (
         <Filter onOverlayClick={closeFilterHandler} onRefreshFilterClick={refreshFilterHandler} onCloseFilterClick={closeFilterHandler} />
       )}
-      {tokensPresent && openProfileActive && <ProfilePopup onOverlayClick={closeProfile} />}
+      {tokensPresent && openProfileActive && <ProfilePopup onOverlayClick={closeProfile} tokensPresent={tokensPresent} />}
     </nav>
   )
 }
