@@ -24,9 +24,7 @@ export default function ProfilePopup({ onOverlayClick, tokensPresent }) {
 
         if (response.ok) {
           setData(data)
-          console.log("Yep with token:", data)
         } else {
-          console.log("Nope with token:", data)
           if (response.status === 401) {
             const refreshToken = JSON.parse(localStorage.getItem("refresh"))
 
@@ -55,9 +53,7 @@ export default function ProfilePopup({ onOverlayClick, tokensPresent }) {
 
               if (response.ok) {
                 setData(data)
-                console.log("Yep after refresh:", data)
               } else {
-                console.log("Nope after refresh:", data)
                 HandleLogOut()
               }
             } else {
@@ -125,7 +121,7 @@ export default function ProfilePopup({ onOverlayClick, tokensPresent }) {
           </ul>
         </div>
       ) : (
-        <div>Loading...</div>
+        <></>
       )}
     </div>
   )

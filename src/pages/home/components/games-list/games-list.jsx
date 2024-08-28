@@ -20,7 +20,6 @@ export default function GamesList({ openGameFullScreen, tokensPresent, onGameCli
       if (response.ok) {
         setCards(cards)
       } else {
-        console.log("Nope:", cards)
         return
       }
     }
@@ -57,7 +56,7 @@ export default function GamesList({ openGameFullScreen, tokensPresent, onGameCli
             </li>
           ))
         ) : (
-          <div>Loading...</div>
+          <></>
         )}
       </ul>
       {tokensPresent ? <CreateGameButton /> : <></>}

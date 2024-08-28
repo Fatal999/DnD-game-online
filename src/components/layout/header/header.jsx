@@ -78,7 +78,7 @@ export default function Header({ tokensPresent, gameFullScreen }) {
       async function fetchData() {
         let token = localStorage.getItem("access")
 
-        let response = await fetch(`${Domain}api/account/settings/`, {
+        let response = await fetch(`${Domain}api/account/profile/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -90,9 +90,7 @@ export default function Header({ tokensPresent, gameFullScreen }) {
 
         if (response.ok) {
           setData(data)
-          console.log("Yep with token:", data)
         } else {
-          console.log("Nope with token:", data)
           if (response.status === 401) {
             const refreshToken = JSON.parse(localStorage.getItem("refresh"))
 
@@ -109,7 +107,7 @@ export default function Header({ tokensPresent, gameFullScreen }) {
               localStorage.setItem("access", refreshData.access)
 
               token = refreshData.access
-              response = await fetch(`${Domain}api/account/settings/`, {
+              response = await fetch(`${Domain}api/account/profile/`, {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -121,9 +119,7 @@ export default function Header({ tokensPresent, gameFullScreen }) {
 
               if (response.ok) {
                 setData(data)
-                console.log("Yep after refresh:", data)
               } else {
-                console.log("Nope after refresh:", data)
                 HandleLogOut()
               }
             } else {
@@ -136,6 +132,15 @@ export default function Header({ tokensPresent, gameFullScreen }) {
       fetchData()
     }
   }, [tokensPresent])
+
+  const [currentAvatar, setcurrentAvatar] = useState(false)
+  useEffect(() => {
+    if (data && data.avatar === null) {
+      setcurrentAvatar(false)
+    } else if (data) {
+      setcurrentAvatar(true)
+    }
+  }, [data])
 
   return (
     <nav className="header">
@@ -151,11 +156,20 @@ export default function Header({ tokensPresent, gameFullScreen }) {
       </button>
       {tokensPresent ? (
         data ? (
-          <button className="header__user-log-in" type="button" onClick={openProfile}>
-            {data.username[0]}
-          </button>
+          currentAvatar ? (
+            <button
+              className="header__user-log-in"
+              type="button"
+              style={{ backgroundImage: `url(${Domain}${data.avatar})` }}
+              onClick={openProfile}
+            ></button>
+          ) : (
+            <button className="header__user-log-in" type="button" onClick={openProfile}>
+              {data.user.username[0]}
+            </button>
+          )
         ) : (
-          <div>Loading...</div>
+          <></>
         )
       ) : (
         <button className="header__user" type="button" onClick={showLogInHandlerInternal}></button>

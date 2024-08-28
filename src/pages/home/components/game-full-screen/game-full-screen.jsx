@@ -60,9 +60,7 @@ export default function GameFullScreen({ closeGameFullScreen, selectedGameId, to
 
         if (response.ok) {
           setData(data)
-          console.log("Yep with token:", data)
         } else {
-          console.log("Nope with token:", data)
           if (response.status === 401) {
             const refreshToken = JSON.parse(localStorage.getItem("refresh"))
 
@@ -91,9 +89,7 @@ export default function GameFullScreen({ closeGameFullScreen, selectedGameId, to
 
               if (response.ok) {
                 setData(data)
-                console.log("Yep after refresh:", data)
               } else {
-                console.log("Nope after refresh:", data)
                 HandleLogOut()
               }
             } else {
@@ -117,9 +113,6 @@ export default function GameFullScreen({ closeGameFullScreen, selectedGameId, to
 
         if (response.ok) {
           setData(data)
-          console.log("Yep no token:", data)
-        } else {
-          console.log("Nope no token:", data)
         }
       }
 
@@ -205,7 +198,7 @@ export default function GameFullScreen({ closeGameFullScreen, selectedGameId, to
           </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <></>
       )}
     </>
   )

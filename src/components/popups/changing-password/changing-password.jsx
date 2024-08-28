@@ -76,9 +76,7 @@ export default function ChangingPassword({ onOverlayClick }) {
 
             if (response.ok) {
               setFormData(data)
-              console.log("Yep after refresh:", data)
             } else {
-              console.log("Nope after refresh:", data)
               HandleLogOut()
             }
           } else {

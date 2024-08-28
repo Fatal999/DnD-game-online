@@ -54,9 +54,7 @@ export default function Settings({ tokensPresent }) {
         setInfo(info)
         setUsername(info.username)
         setEmail(info.email)
-        console.log("Yep before refresh:", info)
       } else {
-        console.log("Nope before refresh:", info)
         if (response.status === 401) {
           const refreshToken = JSON.parse(localStorage.getItem("refresh"))
 
@@ -87,9 +85,7 @@ export default function Settings({ tokensPresent }) {
               setInfo(info)
               setUsername(info.username)
               setEmail(info.email)
-              console.log("Yep after refresh:", info)
             } else {
-              console.log("Nope after refresh:", info)
               HandleLogOut()
             }
           } else {
@@ -125,7 +121,6 @@ export default function Settings({ tokensPresent }) {
       showGoodPoup()
       window.location.reload()
     } else {
-      console.log("Update failed:", result)
       setErrorData(result.errors[0])
       showBadPopup()
     }
@@ -166,7 +161,7 @@ export default function Settings({ tokensPresent }) {
               <CreateGameButton />
             </div>
           ) : (
-            <div>Loading...</div>
+            <></>
           )}
         </form>
       </Main>
