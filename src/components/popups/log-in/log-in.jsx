@@ -64,14 +64,12 @@ export default function LogInPopup({ onOverlayClick, onRegistrationClick, onForg
       const data = await response.json()
 
       if (response.ok) {
-        console.error("Log In zbs:", data)
         showGoodLogIn()
         localStorage.clear()
         localStorage.setItem("refresh", JSON.stringify(data.refresh))
         localStorage.setItem("access", JSON.stringify(data.access))
         window.location.reload()
       } else {
-        console.error("Log In failed:", data)
         setErrorData(data.errors[0])
         showBadLogIn()
       }

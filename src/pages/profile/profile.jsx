@@ -36,6 +36,7 @@ export default function Profile({ tokensPresent }) {
 
       if (response.ok) {
         setData(data)
+        console.log(data)
       } else {
         if (response.status === 401) {
           const refreshToken = JSON.parse(localStorage.getItem("refresh"))
@@ -65,6 +66,7 @@ export default function Profile({ tokensPresent }) {
 
             if (response.ok) {
               setData(data)
+              console.log(data)
             } else {
               HandleLogOut()
             }
@@ -223,6 +225,7 @@ export default function Profile({ tokensPresent }) {
 
       if (response.ok) {
         setAvatar(data)
+        console.log(data)
         setcurrentAvatar(false)
       } else {
         if (response.status === 401) {
@@ -252,6 +255,7 @@ export default function Profile({ tokensPresent }) {
 
             if (response.ok) {
               setAvatar(data)
+              console.log(data)
               setcurrentAvatar(false)
             } else {
               HandleLogOut()

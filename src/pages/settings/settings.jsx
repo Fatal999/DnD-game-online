@@ -11,14 +11,15 @@ import HandleLogOut from "../../components/utils/handle-log-out"
 import { Helmet } from "react-helmet-async"
 
 export default function Settings({ tokensPresent }) {
-  const [info, setInfo] = useState(null)
-  const [username, setUsername] = useState(info ? info.username : "")
-  const [email, setEmail] = useState(info ? info.email : "")
-
+  const [data, setData] = useState(null)
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [errorData, setErrorData] = useState(null)
   const [goodRequest, setGoodRequest] = useState(false)
   const [badRequest, setBadRequest] = useState(false)
   const [changePasswordPopup, setChangePasswordPopup] = useState(false)
+  const [usernameChanged, setUsernameChanged] = useState(false)
+  const [emailChanged, setEmailChanged] = useState(false)
 
   function openChangePasswordPopup() {
     setChangePasswordPopup(true)
@@ -28,7 +29,7 @@ export default function Settings({ tokensPresent }) {
     setChangePasswordPopup(false)
   }
 
-  function showGoodPoup() {
+  function showGoodPopup() {
     setGoodRequest(true)
   }
 
@@ -48,12 +49,10 @@ export default function Settings({ tokensPresent }) {
         }
       })
 
-      let info = await response.json()
+      let data = await response.json()
 
       if (response.ok) {
-        setInfo(info)
-        setUsername(info.username)
-        setEmail(info.email)
+        setData(data)
       } else {
         if (response.status === 401) {
           const refreshToken = JSON.parse(localStorage.getItem("refresh"))
@@ -79,12 +78,10 @@ export default function Settings({ tokensPresent }) {
               }
             })
 
-            info = await response.json()
+            data = await response.json()
 
             if (response.ok) {
-              setInfo(info)
-              setUsername(info.username)
-              setEmail(info.email)
+              setData(data)
             } else {
               HandleLogOut()
             }
@@ -98,9 +95,31 @@ export default function Settings({ tokensPresent }) {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    if (data) {
+      setUsername(data.username || "")
+      setEmail(data.email || "")
+    }
+  }, [data])
+
   async function handleSubmit(evt) {
     evt.preventDefault()
+
     let token = localStorage.getItem("access")
+
+    const body = {}
+
+    if (usernameChanged && username !== data.username) {
+      body.username = username
+    }
+
+    if (emailChanged && email !== data.email) {
+      body.email = email
+    }
+
+    if (Object.keys(body).length === 0) {
+      return
+    }
 
     const response = await fetch(`${Domain}api/account/settings/`, {
       method: "PUT",
@@ -108,17 +127,14 @@ export default function Settings({ tokensPresent }) {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
       },
-      body: JSON.stringify({
-        username: username,
-        email: email
-      })
+      body: JSON.stringify(body)
     })
 
     const result = await response.json()
 
     if (response.ok) {
-      setInfo(result)
-      showGoodPoup()
+      setData(result)
+      showGoodPopup()
       window.location.reload()
     } else {
       setErrorData(result.errors[0])
@@ -137,12 +153,26 @@ export default function Settings({ tokensPresent }) {
         <h1>Settings</h1>
         <h2>Account</h2>
         <form onSubmit={handleSubmit}>
-          {info ? (
+          {data ? (
             <div className="main__settings">
               <h3>Username</h3>
-              <input type="text" value={username} onChange={(el) => setUsername(el.target.value)} />
+              <input
+                type="text"
+                value={username}
+                onChange={(el) => {
+                  setUsername(el.target.value)
+                  setUsernameChanged(true)
+                }}
+              />
               <h3>Email</h3>
-              <input type="email" value={email} onChange={(el) => setEmail(el.target.value)} />
+              <input
+                type="email"
+                value={email}
+                onChange={(el) => {
+                  setEmail(el.target.value)
+                  setEmailChanged(true)
+                }}
+              />
               {badRequest && <ErrorPopup error={errorData}></ErrorPopup>}
               {goodRequest && <SuccessfulPopup></SuccessfulPopup>}
               <button type="submit">Save</button>
