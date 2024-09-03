@@ -24,5 +24,4 @@
 
 ---
 
-<h2 align="center">🥇 Nothing development presents 🥇</h2>
-
+<p align="center">🥇 Nothing development presents 🥇</p>
