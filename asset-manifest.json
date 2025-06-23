@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/DnD-game-online/static/css/main.8a894d4b.css",
+    "main.js": "/DnD-game-online/static/js/main.79d6ec4d.js",
+    "static/media/PublicSans-SemiBold.woff2": "/DnD-game-online/static/media/PublicSans-SemiBold.58e866e8e4424e23f881.woff2",
+    "static/media/PublicSans-Regular.woff2": "/DnD-game-online/static/media/PublicSans-Regular.97ee22bca2a21267cc57.woff2",
+    "static/media/subtract.svg": "/DnD-game-online/static/media/subtract.7751dd6cdab44c5b3605.svg",
+    "static/media/filter-refresh-icon.svg": "/DnD-game-online/static/media/filter-refresh-icon.87e760f0d637f0319106.svg",
+    "static/media/header-filter.svg": "/DnD-game-online/static/media/header-filter.5f8c913d301d14421abc.svg",
+    "static/media/close-icon.svg": "/DnD-game-online/static/media/close-icon.062ada0e67638b3749d1.svg",
+    "static/media/filter-close-icon.svg": "/DnD-game-online/static/media/filter-close-icon.7aa9a1acdb9cff5d21d9.svg",
+    "static/media/filter-game-remover.svg": "/DnD-game-online/static/media/filter-game-remover.5821b3cffa7415d56c10.svg",
+    "static/media/google.svg": "/DnD-game-online/static/media/google.fa2d390aed98976e85da.svg",
+    "static/media/un-log.svg": "/DnD-game-online/static/media/un-log.0a625ef6f805ebfeb9c3.svg",
+    "static/media/header-search.svg": "/DnD-game-online/static/media/header-search.8336b4f607db6171bdce.svg",
+    "static/media/radio-active.svg": "/DnD-game-online/static/media/radio-active.9c5689be554bd554f864.svg",
+    "static/media/show-password.svg": "/DnD-game-online/static/media/show-password.b8182642c937ac6013ac.svg",
+    "static/media/done-icon.svg": "/DnD-game-online/static/media/done-icon.a799602bdb218b9e1f48.svg",
+    "static/media/checkbox-active.svg": "/DnD-game-online/static/media/checkbox-active.afbbf8dc366894a37653.svg",
+    "static/media/checkbox-off.svg": "/DnD-game-online/static/media/checkbox-off.bedb29e12bd0e590e70b.svg",
+    "static/media/radio-off.svg": "/DnD-game-online/static/media/radio-off.8b0853af69d953044014.svg",
+    "index.html": "/DnD-game-online/index.html",
+    "main.8a894d4b.css.map": "/DnD-game-online/static/css/main.8a894d4b.css.map",
+    "main.79d6ec4d.js.map": "/DnD-game-online/static/js/main.79d6ec4d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8a894d4b.css",
+    "static/js/main.79d6ec4d.js"
+  ]
+}
